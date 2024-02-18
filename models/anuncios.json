@@ -1,0 +1,18 @@
+{
+    "anuncios" : [
+        {
+            "nombre": "Bicicleta",
+            "venta": true,
+            "precio": 150.98,
+            "foto": "/images/bici.jpg",
+            "tags": ["deportes","transporte", "ligestyle"]
+        },
+        {
+            "nombre":  "Televisor",
+            "venta": false,
+            "precio": 324.76,
+            "foto":  "/images/television.png",
+            "tags": [ "electronica", "hogar", "lifestyle" ]
+        }
+    ]
+}
