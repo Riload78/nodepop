@@ -1,19 +1,21 @@
 const express = require('express')
 const router = express.Router()
+const getAnuncios = require('../controllers/anuncio')
 
 /* GET users listing. */
 router.get('/', async (req, res, next) => {
+  res.send(JSON.stringify({ message: 'Bienvenido' }))
+})
+
+router.get('/anuncios', async (req, res, next) => {
   try {
     // const anuncios = await Anuncio.find()
-    res.send(JSON.stringify({ message: 'API is running' }))
+    const data = await getAnuncios()
+    console.log(data)
+    res.send(data)
   } catch (error) {
     console.log(error)
   }
-})
-
-router.get('/anuncios', (req, res, next) => {
-  // get list anuncios
-  res.send(JSON.stringify({ message: 'Listado de anuncios' }))
 })
 
 module.exports = router
