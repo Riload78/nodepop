@@ -5,8 +5,7 @@ const getAnuncios = async () => {
     const anunciosDB = await Anuncio.find()
     return anunciosDB
   } catch (error) {
-    console.log('Error al obtener los anuncios de la base de datos')
-    return error
+    console.log(`Error al obtener los anuncios de la base de datos: ${error}`)
   }
 }
 module.exports = getAnuncios
