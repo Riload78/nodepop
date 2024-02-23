@@ -8,5 +8,32 @@
     <h1><%= title %></h1>
     <p>Welcome to <%= title %></p>
     <p>Hola</p> 
+    <div class="list-wrapper">
+      <% data.forEach(function (item) { %>
+        <div class="list-item">
+          <h2 class="name"><%= item.nombre %></h2>
+        
+          <img src='/images/<%= item.imagen %>'' alt="<%= item.imagen  %>">  
+          <div class="info-wrapper">
+            <div class="status sale">
+              <% if (item.venta){ %>
+                 <span class="sale">En Venta</span> 
+              <% } else { %>
+                  <span class="buy">Se busca</span>
+              <% } %>
+            </div>
+            <div class="price">
+              <h4><%= item.precio %> €</h4>
+            </div>
+          </div>
+          <div class="tags-wrapper">
+            <% const tags = item.tags %>
+            <% tags.forEach(function(tag ){ %>
+                <span class="tag"><%= tag %></span>
+            <% }); %>
+          </div>
+        </div>
+      <% }); %>
+    </div>
   </body>
 </html>

@@ -9,7 +9,12 @@ router.get('/', async (req, res, next) => {
 
 router.get('/anuncios', async (req, res, next) => {
   try {
-    const result = await getAnuncios()
+    const skip = req.query.skip
+    const limit = req.query.limit
+    const tags = req.query.tags
+    const venta = req.query.venta
+
+    const result = await getAnuncios(skip, limit, tags, venta)
     res.send(result)
   } catch (error) {
     console.log(error)
@@ -32,10 +37,9 @@ router.post('/anuncios', async (req, res, next) => {
 
 router.get('/tags', async (req, res, next) => {
   try {
-    const tags = await getTags()
-    if (!tags) throw new Error('Error al obtener las etiquetas')
-    const data = [{ tags }]
-    res.send(data)
+    const result = await getTags()
+    if (!result.status) return res.status(400).json(result.errors)
+    res.send(result)
   } catch (error) {
     console.log(error)
     res.status(500).json({ error: 'Ocurrió un error al obtener las etiquetas' })

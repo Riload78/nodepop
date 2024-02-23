@@ -1,8 +1,80 @@
 body {
   padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font   : 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
 a {
   color: #00B7FF;
+}
+
+h4 {
+  font-size: 18px;
+  margin   : 0;
+}
+
+.list-wrapper {
+  display                : -webkit-box;
+  display                : -moz-box;
+  display                : -ms-flexbox;
+  display                : -webkit-flex;
+  display                : flex;
+  -webkit-flex-wrap      : wrap;
+  -ms-flex-wrap          : wrap;
+  flex-wrap              : wrap;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack          : justify;
+  justify-content        : space-between;
+  gap                    : 2rem;
+}
+
+img {
+  max-width: 300px;
+}
+
+.list-item {
+  padding: 10px;
+}
+
+.status span {
+  display            : -webkit-box;
+  display            : -moz-box;
+  display            : -ms-flexbox;
+  display            : -webkit-flex;
+  display            : flex;
+  -webkit-align-items: center;
+  -ms-flex-align     : center;
+  align-items        : center;
+  gap                : 5px;
+}
+
+.status span:before {
+  content         : "";
+  width           : 10px;
+  height          : 10px;
+  border-radius   : 50%;
+  display         : block;
+
+
+}
+.status .sale:before{
+   background-color: tomato;
+}
+
+.status .buy:before {
+  background-color: #97E630;
+}
+
+.info-wrapper {
+  display                : -webkit-box;
+  display                : -moz-box;
+  display                : -ms-flexbox;
+  display                : -webkit-flex;
+  display                : flex;
+  -webkit-flex-wrap      : wrap;
+  -ms-flex-wrap          : wrap;
+  flex-wrap              : wrap;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack          : justify;
+  justify-content        : space-between;
+  padding                : 10px 0;
 }
