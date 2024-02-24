@@ -21,6 +21,7 @@ router.get('/', async (req, res, next) => {
   }
 
   res.locals.data = result.data
+  res.locals.count = result.count
   res.render('index', { title: 'NodePOP' })
 })
 
