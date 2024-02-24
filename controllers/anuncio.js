@@ -1,8 +1,8 @@
 const Anuncio = require('../models/Anuncio')
 
-const getAnuncios = async (skip, limit, tags, venta) => {
+const getAnuncios = async (skip, limit, tags, venta, precio) => {
   try {
-    const anunciosDB = await Anuncio.list(skip, limit, tags, venta)
+    const anunciosDB = await Anuncio.list(skip, limit, tags, venta, precio)
     return { status: 'success', data: anunciosDB }
   } catch (error) {
     console.log(`Error al obtener los anuncios de la base de datos: ${error}`)

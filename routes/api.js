@@ -13,8 +13,9 @@ router.get('/anuncios', async (req, res, next) => {
     const limit = req.query.limit
     const tags = req.query.tags
     const venta = req.query.venta
+    const precio = req.query.precio
 
-    const result = await getAnuncios(skip, limit, tags, venta)
+    const result = await getAnuncios(skip, limit, tags, venta, precio)
     res.send(result)
   } catch (error) {
     console.log(error)
