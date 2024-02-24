@@ -7,7 +7,6 @@
   <body>
     <h1><%= title %></h1>
     <p>Welcome to <%= title %></p>
-    <p>Hola</p> 
     <div class="list-wrapper">
       <% data.forEach(function (item) { %>
         <div class="list-item">
@@ -32,8 +31,14 @@
                 <span class="tag"><%= tag %></span>
             <% }); %>
           </div>
+         
         </div>
       <% }); %>
     </div>
+     <div class="error">
+        <% if (error) { %>
+            <p class="error-message"><%= error.message %></p>
+        <% } %>
+      </div>
   </body>
 </html>

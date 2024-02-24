@@ -78,3 +78,10 @@ img {
   justify-content        : space-between;
   padding                : 10px 0;
 }
+
+.error-message{
+  background-color: tomato;
+  padding: 20px 10px;
+  color:white;
+  border-radius: 5px;
+}
