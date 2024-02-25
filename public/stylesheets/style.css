@@ -104,3 +104,10 @@ img {
   display: block;
   padding: 2rem 0 0 0;
 }
+.tag{
+  background-color: #5a5ac9;
+  color: white;
+  padding: 5px;
+  border-radius:5px;
+  font-size: 12px;
+}

@@ -5,8 +5,11 @@ const cookieParser = require('cookie-parser')
 const logger = require('morgan')
 const helmet = require('helmet')
 
+const swaggerUI = require('swagger-ui-express')
+
 const indexRouter = require('./routes/index')
 const apiRouter = require('./routes/api')
+const swaggerDocs = require('./routes/api-docs')
 
 const dbConnect = require('./config/mongo')
 
@@ -16,6 +19,7 @@ const app = express()
 app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'ejs')
 
+// middelware
 app.use(logger('common'))
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
@@ -26,6 +30,7 @@ app.use(express.static('public'))
 app.use(helmet())
 app.use('/', indexRouter)
 app.use('/apiv1', apiRouter)
+app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerDocs))
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
