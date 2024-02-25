@@ -53,6 +53,16 @@ const swaggerOptions = {
           summary: 'Get all Ads',
           description: 'Returns a list of all available anuncios on the platform.',
           operationId: 'getAnuncios',
+					parameters: [
+						{
+							name: 'nombre',
+							in: 'query',
+							description: 'Filter by name',
+							schema: {
+								type: 'string'
+							}
+						}
+					],
           responses: {
             200: {
               description: 'A list of anuncios.',
@@ -69,7 +79,7 @@ const swaggerOptions = {
         post: {
           tags: ['Anuncios'],
           summary: 'Create new ad',
-          description: 'Creates a new advertisement.',
+          description: 'Creates a new ad. At the moment, set field "image" to "demo.jpg". Uploaded image is under construction',
           operationId: 'createAnuncio',
           requestBody: {
             content: {
