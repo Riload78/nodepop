@@ -50,7 +50,7 @@ const swaggerOptions = {
           tags: [
             'Anuncios'
           ],
-          summary: 'Get all anuncios',
+          summary: 'Get all Ads',
           description: 'Returns a list of all available anuncios on the platform.',
           operationId: 'getAnuncios',
           responses: {
@@ -65,30 +65,57 @@ const swaggerOptions = {
               }
             }
           }
+        },
+        post: {
+          tags: ['Anuncios'],
+          summary: 'Create new ad',
+          description: 'Creates a new advertisement.',
+          operationId: 'createAnuncio',
+          requestBody: {
+            content: {
+              'application/json': {
+                schema: {
+                  $ref: '#/components/schemas/Anuncio'
+                }
+              }
+            }
+          },
+          responses: {
+            201: {
+              description: 'Created. The request has been fulfilled and resulted in one or more new resources being created.',
+              content: {
+                'application/json': {
+                  schema: {
+                    $ref: '#/components/schemas/Anuncio'
+                  }
+                }
+              }
+            }
+          }
         }
       },
-			'/tags': {
-				get: {
-					tags: [
-						'Tags'
-					],
-					summary: 'Tags List',
-					description: 'Return a tags list fron all anuncios',
-					operationId: 'gatTags',
-					responses: {
-						200: {
-							description: 'Una lista de tags.',
-							content: {
-								'application/json': {
-									schema: {
-										$ref: '#/components/schemas/Anuncio'
-									}
-								}
-							}
-						}
-					}
-				}
-			}
+      '/tags': {
+        get: {
+          tags: [
+            'Tags'
+          ],
+          summary: 'Tags List',
+          description: 'Return a tags list fron all anuncios',
+          operationId: 'gatTags',
+          responses: {
+            200: {
+              description: 'Una lista de tags.',
+              content: {
+                'application/json': {
+                  schema: {
+                    $ref: '#/components/schemas/Anuncio'
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   basePath: '/apiv1/',
