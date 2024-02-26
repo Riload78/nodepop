@@ -55,11 +55,11 @@ const createAnuncio = async (data) => {
  * @param {object} data
  * @returns object
  */
-const updateAnuncio = async (id, data) => {
+const updateAnuncio = async (id, changes) => {
   try {
     // Buscar y actualizar el registro correspondiente
-    await Anuncio.findByIdAndUpdate(id, data, { new: true })
-    return data
+    await Anuncio.findByIdAndUpdate(id, changes, { new: true })
+    return { status: 'succes', data: changes }
   } catch (error) {
     console.log(error)
     return error

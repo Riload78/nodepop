@@ -47,6 +47,7 @@ router.put('/anuncios/:id', async (req, res, next) => {
   const changes = req.body
   try {
     const result = await updateAnuncio(id, changes)
+    if (!result.status) return res.status(400).send({ error: result.message })
     res.send(result)
   } catch (error) {
     console.error(error)

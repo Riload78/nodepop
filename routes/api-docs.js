@@ -155,6 +155,50 @@ const swaggerOptions = {
           }
         }
       },
+      '/anuncios/{id}': {
+        get: {
+
+        },
+        put: {
+          tags: ['Anuncios'],
+          summary: 'Update an existing advertisement',
+          operationId: 'updateAnuncio',
+          parameters: [
+            {
+              name: 'id',
+              in: 'path',
+              required: true,
+              description: 'Advertisement id.',
+              schema: {
+                type: 'string'
+              }
+            }
+          ],
+          requestBody: {
+            description: 'Updated information of the advertisement.',
+            content: {
+              'application/json': {
+                schema: {
+                  $ref: '#/components/schemas/Anuncio'
+                }
+              }
+            }
+          },
+          responses: {
+            200: {
+              description: 'Created. The request has been fulfilled and resulted in one or more new resources being created.',
+              content: {
+                'application/json': {
+                  schema: {
+                    $ref: '#/components/schemas/Anuncio'
+                  }
+                }
+              }
+            }
+          }
+        }
+
+      },
       '/tags': {
         get: {
           tags: [
