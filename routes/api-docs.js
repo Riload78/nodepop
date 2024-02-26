@@ -53,16 +53,57 @@ const swaggerOptions = {
           summary: 'Get all Ads',
           description: 'Returns a list of all available anuncios on the platform.',
           operationId: 'getAnuncios',
-					parameters: [
-						{
-							name: 'nombre',
-							in: 'query',
-							description: 'Filter by name',
-							schema: {
-								type: 'string'
-							}
-						}
-					],
+          parameters: [
+            {
+              name: 'nombre',
+              in: 'query',
+              description: 'Filter by name',
+              schema: {
+                type: 'string'
+              }
+            },
+            {
+              name: 'tags',
+              in: 'query',
+              description: 'Filter by tag. To filter by more tags, separate them with a ","',
+              schema: {
+                type: 'string'
+              }
+            },
+            {
+              name: 'venta',
+              in: 'query',
+              description: 'Filter by "true" or "false". Filter ads that are for sale (venta=true) or in search (venta=false)',
+              schema: {
+                type: Boolean
+              }
+            },
+            {
+              name: 'precio',
+              in: 'query',
+              description: 'price range (min. price and max. price), we can use a parameter in the query string named price that has one of these combinations: 10-50 will search for ads with price included between these values. 10- will look for those with a price greater than 10. -50 will look for those with a price less than 50. 50 will look for those with a price equal to 50',
+              schema: {
+                type: 'string'
+              }
+
+            },
+            {
+              name: 'skip',
+              in: 'query',
+              description: 'Number of records to skip.',
+              schema: {
+                type: 'integer'
+              }
+            },
+            {
+              name: 'limit',
+              in: 'query',
+              description: 'Max number of record to return.',
+              schema: {
+                type: 'integer'
+              }
+            }
+          ],
           responses: {
             200: {
               description: 'A list of anuncios.',
