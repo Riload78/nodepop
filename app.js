@@ -42,6 +42,18 @@ app.use(function (err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message
   res.locals.error = req.app.get('env') === 'development' ? err : {}
+  if (err.array) {
+    const errInfo = err.array({})[0]
+    console.log(errInfo)
+    err.message = `Not valid - ${errInfo.type} in ${errInfo.location} ${errInfo.msg}`
+    err.status = 422
+  }
+
+  // si el fallo es en el API -> responder en formato JSON
+  if (req.originalUrl.startsWith('/apiv1/')) {
+    res.json({ error: err })
+    return
+  }
 
   // render the error page
   res.status(err.status || 500)

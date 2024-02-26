@@ -2,8 +2,8 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 const anuncioSchema = new Schema({
-  nombre: { type: String, required: true },
-  venta: Boolean,
+  nombre: { type: String, required: true, minlength: 5 },
+  venta: { type: Boolean, default: false, required: true },
   precio: { type: Number, required: true },
   imagen: { type: String },
   tags: [String]

@@ -1,10 +1,15 @@
 const express = require('express')
 const router = express.Router()
-const { getAnuncios, getTags, createAnuncio } = require('../controllers/anuncio')
+const { getAnuncios, getTags, createAnuncio, updateAnuncio } = require('../controllers/anuncio')
 
-/* GET users listing. */
+/* Info. */
 router.get('/', async (req, res, next) => {
-  res.send(JSON.stringify({ message: 'Bienvenido' }))
+  res.send(
+    {
+      message: 'Bienvenido a NodePOP API',
+      docs: 'http://localhost:3000/api-docs/#/Anuncios/getAnuncios'
+    }
+  )
 })
 
 router.get('/anuncios', async (req, res, next) => {
@@ -20,16 +25,28 @@ router.get('/anuncios', async (req, res, next) => {
     res.send(result)
   } catch (error) {
     console.log(error)
+    next(error)
   }
 })
 
 router.post('/anuncios', async (req, res, next) => {
   const data = req.body
-  console.log(data)
+
   try {
     const result = await createAnuncio(data)
+    if (!result.status) return res.status(400).send({ error: result.message })
+    res.send(result)
+  } catch (error) {
+    console.error(error)
+    next(error)
+  }
+})
 
-    if (!result.status) return res.status(400).json(result.errors)
+router.put('/anuncios/:id', async (req, res, next) => {
+  const id = req.params.id
+  const changes = req.body
+  try {
+    const result = await updateAnuncio(id, changes)
     res.send(result)
   } catch (error) {
     console.error(error)

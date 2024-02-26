@@ -73,7 +73,7 @@ const swaggerOptions = {
             {
               name: 'venta',
               in: 'query',
-              description: 'Filter by "true" or "false". Filter ads that are for sale (venta=true) or in search (venta=false)',
+              description: 'Filter by true or false. Filter ads that are for sale (venta=true) or in search (venta=false)',
               schema: {
                 type: Boolean
               }
@@ -134,6 +134,16 @@ const swaggerOptions = {
           responses: {
             201: {
               description: 'Created. The request has been fulfilled and resulted in one or more new resources being created.',
+              content: {
+                'application/json': {
+                  schema: {
+                    $ref: '#/components/schemas/Anuncio'
+                  }
+                }
+              }
+            },
+            400: {
+              description: 'Bad Request. Invalid input data.',
               content: {
                 'application/json': {
                   schema: {

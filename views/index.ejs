@@ -34,11 +34,11 @@
          
         </div>
       <% }); %>
+      <div class="error">
+         <% if (error) { %>
+             <p class="error-message"><%= error.message %></p>
+         <% } %>
+       </div>
     </div>
-     <div class="error">
-        <% if (error) { %>
-            <p class="error-message"><%= error.message %></p>
-        <% } %>
-      </div>
   </body>
 </html>
