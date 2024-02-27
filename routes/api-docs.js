@@ -102,6 +102,14 @@ const swaggerOptions = {
               schema: {
                 type: 'integer'
               }
+            },
+            {
+              name: 'sort',
+              in: 'query',
+              description: 'Sort property. Prefix with "-" for descending. For more one sort, separate with space',
+              schema: {
+                type: 'string'
+              }
             }
           ],
           responses: {
