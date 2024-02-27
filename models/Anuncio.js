@@ -9,7 +9,7 @@ const anuncioSchema = new Schema({
   tags: [String]
 })
 
-anuncioSchema.statics.list = (skip, limit, tags, venta, precio, nombre) => {
+anuncioSchema.statics.list = (skip, limit, tags, venta, precio, nombre, sort) => {
   const query = Anuncio.find()
 
   if (skip) {
@@ -54,6 +54,10 @@ anuncioSchema.statics.list = (skip, limit, tags, venta, precio, nombre) => {
     const filters = new RegExp('^' + nombre, 'i')
     console.log(filters)
     query.or([{ nombre: filters }])
+  }
+
+  if (sort) {
+    query.sort(sort)
   }
 
   return query.exec()

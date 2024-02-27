@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router()
-const { getAnuncios, getTags, createAnuncio, updateAnuncio } = require('../controllers/anuncio')
+const { getAnuncios, getTags, createAnuncio, updateAnuncio, getAnuncioById, deleteAnuncio } = require('../controllers/anuncio')
 
 /* Info. */
 router.get('/', async (req, res, next) => {
@@ -20,8 +20,9 @@ router.get('/anuncios', async (req, res, next) => {
     const venta = req.query.venta
     const precio = req.query.precio
     const nombre = req.query.nombre
+    const sort = req.query.sort
 
-    const result = await getAnuncios(skip, limit, tags, venta, precio, nombre)
+    const result = await getAnuncios(skip, limit, tags, venta, precio, nombre, sort)
     res.send(result)
   } catch (error) {
     console.log(error)
@@ -42,6 +43,18 @@ router.post('/anuncios', async (req, res, next) => {
   }
 })
 
+router.get('/anuncios/:id', async (req, res, next) => {
+  const id = req.params.id
+  try {
+    const result = await getAnuncioById(id)
+    if (!result.status) return res.status(400).send({ error: result.message })
+    if (result.data === null) return res.status(400).send({ error: `Ad with ID ${id} not found` })
+    res.send(result)
+  } catch (error) {
+    console.log(error)
+    next(error)
+  }
+})
 router.put('/anuncios/:id', async (req, res, next) => {
   const id = req.params.id
   const changes = req.body
@@ -51,6 +64,17 @@ router.put('/anuncios/:id', async (req, res, next) => {
     res.send(result)
   } catch (error) {
     console.error(error)
+    next(error)
+  }
+})
+
+router.delete('/anuncios/:id', async (req, res, next) => {
+  const id = req.params.id
+  try {
+    const result = await deleteAnuncio(id)
+    if (!result.status) return res.status(400).send({ error: result.message })
+    res.send(result)
+  } catch (error) {
     next(error)
   }
 })

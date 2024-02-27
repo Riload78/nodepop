@@ -10,12 +10,13 @@ const Anuncio = require('../models/Anuncio')
  * @param {*} nombre
  * @returns {object}
  */
-const getAnuncios = async (skip, limit, tags, venta, precio, nombre) => {
+
+const getAnuncios = async (skip, limit, tags, venta, precio, nombre, sort) => {
   try {
-    const anunciosDB = await Anuncio.list(skip, limit, tags, venta, precio, nombre)
+    const anunciosDB = await Anuncio.list(skip, limit, tags, venta, precio, nombre, sort)
     return { status: 'success', count: anunciosDB.length, data: anunciosDB }
   } catch (error) {
-    console.log(`Error al obtener los anuncios de la base de datos: ${error}`)
+    console.log(`Error getting ads from database: ${error}`)
     return error
   }
 }
@@ -24,6 +25,7 @@ const getAnuncios = async (skip, limit, tags, venta, precio, nombre) => {
  * GET - TAGS LIST
  * @returns {object}
  */
+
 const getTags = async () => {
   try {
     const tags = await Anuncio.distinct('tags')
@@ -38,13 +40,29 @@ const getTags = async () => {
  * @param {object} data
  * @returns {object}
  */
+
 const createAnuncio = async (data) => {
   const newAnuncio = new Anuncio(data)
   try {
     await newAnuncio.save()
-    return { status: 'success', msg: 'El anuncio se ha creado correctamente' }
+    return { status: 'success', msg: 'The ad has been created successfully' }
   } catch (error) {
-    console.log(`Hubo un error al guardar el anuncio en la BD: ${error}`)
+    console.log(`There was an error saving the ad to the database: ${error}`)
+    return error
+  }
+}
+
+/**
+ * GET - Get ad bi ID
+ * @param {string} id
+ * @returns {object}
+ */
+
+const getAnuncioById = async (id) => {
+  try {
+    const result = await Anuncio.findById(id)
+    return { status: 'success', data: result }
+  } catch (error) {
     return error
   }
 }
@@ -53,17 +71,33 @@ const createAnuncio = async (data) => {
  * PUT - Update Ad by ID
  * @param {string} id
  * @param {object} data
- * @returns object
+ * @returns {object}
  */
+
 const updateAnuncio = async (id, changes) => {
   try {
     // Buscar y actualizar el registro correspondiente
     await Anuncio.findByIdAndUpdate(id, changes, { new: true })
-    return { status: 'succes', data: changes }
+    return { status: 'success', data: changes }
   } catch (error) {
     console.log(error)
     return error
   }
 }
 
-module.exports = { getAnuncios, getTags, createAnuncio, updateAnuncio }
+/**
+ * DELETE - Delete Ad
+ * @param {string} id
+ * @returns {Object}
+ */
+
+const deleteAnuncio = async (id) => {
+  try {
+    await Anuncio.deleteOne(({ _id: id }))
+    return { status: 'ok', message: `The ad with id "${id}" was removed` }
+  } catch (error) {
+    return error
+  }
+}
+
+module.exports = { getAnuncios, getTags, createAnuncio, updateAnuncio, getAnuncioById, deleteAnuncio }

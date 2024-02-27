@@ -11,8 +11,9 @@ router.get('/', async (req, res, next) => {
   const venta = req.query.venta
   const precio = req.query.precio
   const nombre = req.query.nombre
+  const sort = req.query.sort
 
-  const result = await getAnuncios(skip, limit, tags, venta, precio, nombre)
+  const result = await getAnuncios(skip, limit, tags, venta, precio, nombre, sort)
 
   if (result.data.length === 0) {
     res.locals.error = { message: 'No se han encontrado anuncios' }

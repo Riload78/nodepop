@@ -147,7 +147,12 @@ const swaggerOptions = {
               content: {
                 'application/json': {
                   schema: {
-                    $ref: '#/components/schemas/Anuncio'
+                    type: 'object',
+                    properties: {
+                      error: {
+                        type: 'string'
+                      }
+                    }
                   }
                 }
               }
@@ -157,7 +162,47 @@ const swaggerOptions = {
       },
       '/anuncios/{id}': {
         get: {
-
+          tags: ['Anuncios'],
+          summary: 'Get ad by id',
+          operationId: 'getAnuncio',
+          parameters: [
+            {
+              name: 'id',
+              in: 'path',
+              required: true,
+              description: 'Advertisement id.',
+              schema: {
+                type: 'string'
+              }
+            }
+          ],
+          responses: {
+            200: {
+              description: 'Created. The request has been fulfilled and resulted in one or more new resources being created.',
+              content: {
+                'application/json': {
+                  schema: {
+                    $ref: '#/components/schemas/Anuncio'
+                  }
+                }
+              }
+            },
+            400: {
+              description: 'Bad Request. Invalid input data.',
+              content: {
+                'application/json': {
+                  schema: {
+                    type: 'object',
+                    properties: {
+                      error: {
+                        type: 'string'
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
         },
         put: {
           tags: ['Anuncios'],
@@ -190,14 +235,70 @@ const swaggerOptions = {
               content: {
                 'application/json': {
                   schema: {
-                    $ref: '#/components/schemas/Anuncio'
+                    type: 'object',
+                    properties: {
+                      status: {
+                        type: 'string'
+                      },
+                      message: {
+                        type: 'string'
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            400: {
+              description: 'Bad Request. Invalid input data.',
+              content: {
+                'application/json': {
+                  schema: {
+                    type: 'object',
+                    properties: {
+                      error: {
+                        type: 'string'
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        delete: {
+          tags: ['Anuncios'],
+          summary: 'Delete a specific advertisement',
+          operationId: 'deleteAnuncio',
+          parameters: [{
+            name: 'id',
+            in: 'path',
+            required: true,
+            description: 'The id of the advertisement to be deleted',
+            schema: {
+              type: 'string'
+            }
+          }],
+          responses: {
+            200: {
+              description: 'Successful deletion.',
+              content: {
+                'application/json': {
+                  schema: {
+                    type: 'object',
+                    properties: {
+                      status: {
+                        type: 'string'
+                      },
+                      message: {
+                        type: 'string'
+                      }
+                    }
                   }
                 }
               }
             }
           }
         }
-
       },
       '/tags': {
         get: {
