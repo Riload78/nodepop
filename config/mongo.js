@@ -1,13 +1,12 @@
 const mongoose = require('mongoose')
+require('dotenv').config()
 
 const server = process.env.SERVER
 const dbName = process.env.DB_NAME
-// console.log(process.env)
 
 const dbConnect = async () => {
-  // const DB_URI = `mongodb://${server}/${dbName}`
-  const DB_URI = 'mongodb://127.0.0.1:27017/nodepop'
-  // Create a connection
+  const DB_URI = `mongodb://${server}/${dbName}`
+
   try {
     await mongoose.connect(DB_URI)
     console.log('DB connected')
