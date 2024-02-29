@@ -6,8 +6,7 @@ const { getAnuncios, getTags, createAnuncio, updateAnuncio, getAnuncioById, dele
 router.get('/', async (req, res, next) => {
   res.send(
     {
-      message: 'Bienvenido a NodePOP API',
-      docs: 'http://localhost:3000/api-docs/#/Anuncios/getAnuncios'
+      message: 'Bienvenido a NodePOP API'
     }
   )
 })

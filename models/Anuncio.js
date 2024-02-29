@@ -2,9 +2,9 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 const anuncioSchema = new Schema({
-  nombre: { type: String, required: true, minlength: 5 },
+  nombre: { type: String, required: true, minlength: 5, index: true },
   venta: { type: Boolean, default: false, required: true },
-  precio: { type: Number, required: true },
+  precio: { type: Number, required: true, index: true },
   imagen: { type: String },
   tags: [String]
 })
@@ -21,10 +21,7 @@ anuncioSchema.statics.list = (skip, limit, tags, venta, precio, nombre, sort) =>
   }
 
   if (tags) {
-    // Separa las etiquetas por comas y crea un array
     const tagArray = tags.split(',')
-
-    // Agrega el filtro por etiquetas al query
     query.where('tags').in(tagArray)
   }
   if (venta) {
