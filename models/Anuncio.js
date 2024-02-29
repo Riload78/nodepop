@@ -50,9 +50,7 @@ anuncioSchema.statics.list = (skip, limit, tags, venta, precio, nombre, sort) =>
   }
 
   if (nombre) {
-    console.log(nombre)
     const filters = new RegExp('^' + nombre, 'i')
-    console.log(filters)
     query.or([{ nombre: filters }])
   }
 

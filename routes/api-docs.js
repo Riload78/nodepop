@@ -75,7 +75,7 @@ const swaggerOptions = {
               in: 'query',
               description: 'Filter by true or false. Filter ads that are for sale (venta=true) or in search (venta=false)',
               schema: {
-                type: Boolean
+                type: 'Boolean'
               }
             },
             {

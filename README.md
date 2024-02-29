@@ -57,7 +57,8 @@ Start the server
 
 
 ## API Reference
-[See Documentation --> http://localhost:3000/api-docs/#/Anuncios/getAnuncios](http://localhost:3000/api-docs/#/Anuncios/getAnuncios)
+When server is running, you cant access to the documentation **[here](http://localhost:3000/api-docs/#/Anuncios/getAnuncios)** 
+
 #### Get all items
 
 ```http
