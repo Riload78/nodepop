@@ -1,11 +1,12 @@
 const mongoose = require('mongoose')
 require('dotenv').config()
 
-const server = process.env.SERVER
+const host = process.env.DB_HOST
+const port = process.env.DB_PORT
 const dbName = process.env.DB_NAME
 
 const dbConnect = async () => {
-  const DB_URI = `mongodb://${server}/${dbName}`
+  const DB_URI = `mongodb://${host}:${port}/${dbName}`
 
   try {
     await mongoose.connect(DB_URI)

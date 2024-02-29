@@ -1,11 +1,10 @@
 
 # NodePOP
 
-Develop the API that will run on the server of a service selling articles
-second. The service maintains advertisements for the purchase or sale of items and allows you to search and filter by various criteria
+Develop the API that will run on the server of a service selling articles. The service maintains advertisements for the purchase or sale of items and allows you to search and filter by various criteria
 
 ![Static Badge](https://img.shields.io/badge/NODE-8A2BE2)
-![Static Badge](https://img.shields.io/badge/ESPRESS-94E33B)
+![Static Badge](https://img.shields.io/badge/EXPRESS-94E33B)
 ![Static Badge](https://img.shields.io/badge/MONGO-EDCE72)
 ![Static Badge](https://img.shields.io/badge/EJS-F679FC)
 ![Static Badge](https://img.shields.io/badge/SWAGEER-BD415B)
@@ -38,7 +37,8 @@ Install dependencies
 Duplicate .env.template file and rename as .env . After complete required information 
 
 ```bash
-SERVER=
+DB_HOST=
+DB_PORT=
 DB_NAME=
 ```
 
@@ -136,10 +136,8 @@ In progress
 - Add more integrations
 
 
-
-
 ## 🔗 Links
-[![portfolio](https://img.shields.io/badge/my_portfolio-000?style=for-the-badge&logo=ko-fi&logoColor=white)](https://katherineoelsner.com/)
+[![portfolio](https://img.shields.io/badge/my_portfolio-000?style=for-the-badge&logo=ko-fi&logoColor=white)](https://riload78.github.io/portfolio/)
 
 [![linkedin](https://img.shields.io/badge/linkedin-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/)
 
