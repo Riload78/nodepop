@@ -4,6 +4,12 @@
 Develop the API that will run on the server of a service selling articles
 second. The service maintains advertisements for the purchase or sale of items and allows you to search and filter by various criteria
 
+![Static Badge](https://img.shields.io/badge/NODE-8A2BE2)
+![Static Badge](https://img.shields.io/badge/ESPRESS-94E33B)
+![Static Badge](https://img.shields.io/badge/MONGO-EDCE72)
+![Static Badge](https://img.shields.io/badge/EJS-F679FC)
+![Static Badge](https://img.shields.io/badge/SWAGEER-BD415B)
+
 ## Run Locally
 
 Clone the project
@@ -58,12 +64,16 @@ Start the server
   GET /apiv1/anuncios
 ```
 
-| Parameter | Type     | Description                                                     | Example                         |
-| :-------- | :------- | :-------------------------------------------------------------  |:------------------------------- |
-| `nombre`  | `string` | Filter by name                                                  | /apiv1/anuncios?nombre="string" |
-| `tags`    | `string` | Filter by tag. To filter by more tags, separate them with a "," | /apiv1/anuncios?tags="string"   |
-| `nombre` | `string` | **Required**. Your API key |
-| `nombre` | `string` | **Required**. Your API key |
+| Parameter | Type     | Description                                                                                  | Example                         |
+| :-------- | :------- | :------------------------------------------------------------------------------------------- |:------------------------------- |
+| `nombre`  | `string` | Filter by name                                                                               | /apiv1/anuncios?nombre="string" |
+| `tags`    | `string` | Filter by tag. To filter by more tags, separate them with a ","                              | /apiv1/anuncios?tags="string"   |
+| `venta`   | `boolean`| Filter by true or false. Filter ads that are for sale (venta=true) or in search (venta=false)| /apiv1/anuncios?venta=true      |
+| `precio ` | `string` | price range (min. price and max. price)                                                      | /apiv1/anuncios?precio=10-50    |
+| `skip `   | `number` | Number of records to skip.                                                                   | /apiv1/anuncios?skip=8          |
+| `limit `  | `number` | Max number of record to return.                                                              | /apiv1/anuncios?limit=8         |
+| `short `  | `string` | Sort property. Prefix with "-" for descending. For more one sort, separate with space        | /apiv1/anuncios?short=nombre    |
+
 
 #### Get item
 
@@ -73,7 +83,7 @@ Start the server
 
 | Parameter | Type     | Description                       |
 | :-------- | :------- | :-------------------------------- |
-| `id`      | `string` | **Required**. Id of item to fetch |
+| `id`      | `string` | Get Ad by id                     |
 
 
 #### Create item
@@ -82,9 +92,26 @@ Start the server
   POST /api/anuncios
 ```
 
+
+#### Update item
+
+```http
+  POST /api/anuncios/${id}
+```
+
 | Parameter | Type     | Description                       |
 | :-------- | :------- | :-------------------------------- |
-| `id`      | `string` | **Required**. Id of item to fetch |
+| `id`      | `string` | Create new Ad                     |
+
+#### Delete item
+
+```http
+  DELETE /api/anuncios/${id}
+```
+
+| Parameter | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `id`      | `string` | Remove Ad by id                        |
 
 
 #### Get all tags
@@ -93,41 +120,21 @@ Start the server
   GET /apiv1/tags
 ```
 
-| Parameter | Type     | Description                       |
-| :-------- | :------- | :-------------------------------- |
-| `id`      | `string` | **Required**. Id of item to fetch |
 
 
-
-
-
-http://localhost:3000/apiv1/anuncios?tags=deportes,hogar&venta=true
-
-http://localhost:3000/apiv1/anuncios?tags=deportes,hogar&venta=false
 ## Author
 
 - [Riload78](https://github.com/Riload78)
 
 
-## Badges
-
-Add badges from somewhere like: [shields.io](https://shields.io/)
-
-[![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://choosealicense.com/licenses/mit/)
-[![GPLv3 License](https://img.shields.io/badge/License-GPL%20v3-yellow.svg)](https://opensource.org/licenses/)
-[![AGPL License](https://img.shields.io/badge/license-AGPL-blue.svg)](http://www.gnu.org/licenses/agpl-3.0)
-
 
 ## Roadmap
-
-- Additional browser support
+In progress
+- Uploads Images
 
 - Add more integrations
 
 
-## Screenshots
-
-![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
 
 
 ## 🔗 Links
