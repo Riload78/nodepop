@@ -45,7 +45,7 @@ const createAnuncio = async (data) => {
   const newAnuncio = new Anuncio(data)
   try {
     await newAnuncio.save()
-    return { status: 'success', msg: 'The ad has been created successfully' }
+    return { status: 'success', message: 'The ad has been created successfully' }
   } catch (error) {
     console.log(`There was an error saving the ad to the database: ${error}`)
     return error
@@ -94,7 +94,7 @@ const updateAnuncio = async (id, changes) => {
 const deleteAnuncio = async (id) => {
   try {
     await Anuncio.deleteOne(({ _id: id }))
-    return { status: 'ok', message: `The ad with id "${id}" was removed` }
+    return { status: 'success', message: `The ad with id "${id}" was removed` }
   } catch (error) {
     return error
   }
