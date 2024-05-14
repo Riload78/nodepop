@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const { getAnuncios, getTags, createAnuncio, updateAnuncio, getAnuncioById, deleteAnuncio } = require('../controllers/anuncio')
+const customLogger = require('../lib/winstonConfig')
 
 /* Info. */
 router.get('/', async (req, res, next) => {
@@ -22,6 +23,9 @@ router.get('/anuncios', async (req, res, next) => {
     const sort = req.query.sort
 
     const result = await getAnuncios(skip, limit, tags, venta, precio, nombre, sort)
+    customLogger.info('Hola informacion')
+    customLogger.debug(result)
+    customLogger.error('Prueba error')
     res.send(result)
   } catch (error) {
     console.log(error)

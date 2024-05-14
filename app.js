@@ -1,6 +1,7 @@
 const createError = require('http-errors')
 const express = require('express')
 const path = require('path')
+const fs = require('fs')
 const cookieParser = require('cookie-parser')
 const logger = require('morgan')
 const helmet = require('helmet')
@@ -17,12 +18,19 @@ const i18n = require('./lib/i18nConfig')
 
 const app = express()
 
+const accessLogStream = fs.createWriteStream(
+  path.join(__dirname, '/logs/access.log'),
+  {
+    flags: 'a'
+  }
+)
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'ejs')
 
 // middelware
-app.use(logger('common'))
+app.use(logger('common', { stream: accessLogStream }))
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 app.use(cookieParser())
