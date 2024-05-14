@@ -3,5 +3,7 @@
 	"Advert": {
 		"one": "Advert",
 		"other": "Adverts"
-	}
+	},
+	"Login": "Login",
+	"Results:": "Results:"
 }

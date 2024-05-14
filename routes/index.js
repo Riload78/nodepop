@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
 
-const { getAnuncios } = require('../controllers/anuncio')
+const { AnuncioController } = require('../controllers')
 
 /* GET home page. */
 router.get('/', async (req, res, next) => {
@@ -13,7 +13,15 @@ router.get('/', async (req, res, next) => {
   const nombre = req.query.nombre
   const sort = req.query.sort
 
-  const result = await getAnuncios(skip, limit, tags, venta, precio, nombre, sort)
+  const result = await AnuncioController.getAnuncios(
+    skip,
+    limit,
+    tags,
+    venta,
+    precio,
+    nombre,
+    sort
+  )
 
   if (result.data.length === 0) {
     res.locals.error = { message: 'No se han encontrado anuncios' }

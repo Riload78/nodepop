@@ -1,19 +1,12 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    <h1><%= title %></h1>
-    <h2><%= __('Adverts') %></h2>
-    <div class="count">Resultados: <%= count %> <%= __n('Advert', 'Adverts', count) %></div>
+<%- include('header') %>
+    <h1><%= title %> <span><%= __('Adverts') %></span></h1>
+    <div class="count"><%= __('Results:') %> <%= count %> <%= __n('Advert', 'Adverts', count) %></div>
     <div class="list-wrapper">
       <% data.forEach(function (item) { %>
         <div class="list-item">
-          <h2 class="name"><%= item.nombre %></h2>
-        
+          
           <img src='/images/<%= item.imagen %>'' alt="<%= item.imagen  %>">  
+          <h4 class="name"><%= item.nombre %></h4>
           <div class="info-wrapper">
             <div class="status sale">
               <% if (item.venta){ %>
@@ -41,5 +34,4 @@
          <% } %>
        </div>
     </div>
-  </body>
-</html>
+  <%- include('footer') %>

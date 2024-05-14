@@ -3,5 +3,7 @@
 	"Advert": {
 		"one": "Anuncio",
 		"other": "Anuncios"
-	}
+	},
+	"Login": "Iniciar sesión",
+	"Results:": "Resultados:"
 }

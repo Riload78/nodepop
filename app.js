@@ -12,6 +12,8 @@ const indexRouter = require('./routes/index')
 const apiRouter = require('./routes/api')
 const swaggerDocs = require('./routes/api-docs')
 
+const { LocaleController } = require('./controllers')
+
 const dbConnect = require('./config/mongo')
 
 const i18n = require('./lib/i18nConfig')
@@ -40,6 +42,9 @@ app.use(express.static('public'))
 
 app.use(helmet())
 app.use('/', indexRouter)
+app.use('/change-locale/:locale', LocaleController.changeLocale)
+
+// routes api
 app.use('/apiv1', apiRouter)
 app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerDocs))
 
