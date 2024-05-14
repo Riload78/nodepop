@@ -13,6 +13,8 @@ const swaggerDocs = require('./routes/api-docs')
 
 const dbConnect = require('./config/mongo')
 
+const i18n = require('./lib/i18nConfig')
+
 const app = express()
 
 // view engine setup
@@ -25,6 +27,7 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 app.use(cookieParser())
 
+app.use(i18n.init)
 app.use(express.static('public'))
 
 app.use(helmet())
