@@ -13,8 +13,8 @@ const indexRouter = require('./routes/index')
 const apiRouter = require('./routes/api')
 const swaggerDocs = require('./routes/api-docs')
 
-const { LocaleController, LoginController } = require('./controllers')
-
+const { LocaleController, LoginController, CustomerAccountController } = require('./controllers')
+const authSession = require('./lib/authMiddleware')
 const dbConnect = require('./config/mongo')
 
 const i18n = require('./lib/i18nConfig')
@@ -55,6 +55,7 @@ app.use('/', indexRouter)
 app.get('/change-locale/:locale', LocaleController.changeLocale)
 app.get('/login', LoginController.index)
 app.post('/login', LoginController.postLogin)
+app.get('/customer-account', authSession, CustomerAccountController.index)
 
 // routes api
 app.use('/apiv1', apiRouter)

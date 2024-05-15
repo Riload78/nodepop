@@ -28,12 +28,15 @@ router.get('/', async (req, res, next) => {
   } else {
     res.locals.error = null
   }
-
+  if (!req.session.userId) {
+    res.redirect('/login')
+  }
   res.locals.data = result.data
   res.locals.count = result.count
   res.locals.subtitle = res.__('Home')
-  req.session.color = 'Rojo'
-  res.render('index', { title: 'NodePOP', color: req.session.color })
+  res.locals.session = req.session.userId
+
+  res.render('index', { title: 'NodePOP' })
 })
 
 module.exports = router

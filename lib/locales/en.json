@@ -9,5 +9,8 @@
 	"Home": "Home",
 	"Email address": "Email address",
 	"Password": "Password",
-	"Wrong email or password": "Wrong email or password"
+	"Wrong email or password": "Wrong email or password",
+	"Log Out": "Log Out",
+	"My Account": "My Account",
+	"Customer Account": "Customer Account"
 }

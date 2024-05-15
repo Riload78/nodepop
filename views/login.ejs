@@ -1,5 +1,5 @@
 
-<%- include('header') %>
+<%- include('header', {isSession: session}) %>
 <h1><%= title %> <span><%= subtitle %></span></h1>
 <main class="form-signin m-auto my-5">
     <div class="container 100vh col-6">
@@ -14,7 +14,7 @@
                 <label for="floatingPassword"><%= __('Password') %></label>
               </div>
         
-              <button class="btn btn-primary w-100 py-2" type="submit"><%= __('Login') %></button>
+              <button class="btn btn-primary w-100 py-2" type="submit"><%= __('Log Out') %></button>
               <%= error %>
         </div>
         </form>

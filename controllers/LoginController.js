@@ -5,6 +5,7 @@ const index = (req, res) => {
   res.locals.subtitle = res.__('Login')
   res.locals.error = ''
   res.locals.email = ''
+  res.locals.session = false
   res.render('login', { title: 'NODEPOP' })
 }
 const postLogin = async (req, res, next) => {
@@ -12,7 +13,7 @@ const postLogin = async (req, res, next) => {
     const { email, password } = req.body
     // buscar usuario por email
     const user = await User.findOne({ email })
-    if (!user || user.password !== password) {
+    if (!user || !(await user.verifyPassword(password))) {
       res.locals.subtitle = res.__('Login')
       res.locals.email = email
       res.locals.error = res.__('Wrong email or password')
@@ -20,8 +21,8 @@ const postLogin = async (req, res, next) => {
       return
     }
 
-    customLogger.debug('Login attempt: ' + email + ' ' + password)
-    req.session.user = user
+    req.session.userId = user._id
+    res.locals.session = req.session.userId
     res.redirect('/')
   } catch (error) {
     customLogger.error(error)
