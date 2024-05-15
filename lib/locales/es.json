@@ -5,5 +5,9 @@
 		"other": "Anuncios"
 	},
 	"Login": "Iniciar sesión",
-	"Results:": "Resultados:"
+	"Results:": "Resultados:",
+	"Home": "Inicio",
+	"Email address": "Email",
+	"Password": "Contraseña",
+	"Wrong email or password": "Error en el email o la contraseña"
 }

@@ -1,4 +1,4 @@
-const Anuncio = require('../models/Anuncio')
+const { Anuncio } = require('../models')
 
 /**
  * GET - ADS LIST

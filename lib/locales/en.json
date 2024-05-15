@@ -5,5 +5,9 @@
 		"other": "Adverts"
 	},
 	"Login": "Login",
-	"Results:": "Results:"
+	"Results:": "Results:",
+	"Home": "Home",
+	"Email address": "Email address",
+	"Password": "Password",
+	"Wrong email or password": "Wrong email or password"
 }

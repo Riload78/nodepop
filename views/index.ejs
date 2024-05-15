@@ -1,7 +1,8 @@
 <%- include('header') %>
-    <h1><%= title %> <span><%= __('Adverts') %></span></h1>
+    <h1><%= title %> <span><%= subtitle %></span></h1>
     <div class="count"><%= __('Results:') %> <%= count %> <%= __n('Advert', 'Adverts', count) %></div>
     <div class="list-wrapper">
+      <%= color %>
       <% data.forEach(function (item) { %>
         <div class="list-item">
           
@@ -34,4 +35,4 @@
          <% } %>
        </div>
     </div>
-  <%- include('footer') %>
+<%- include('footer') %>

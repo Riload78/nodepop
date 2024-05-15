@@ -5,6 +5,7 @@ const fs = require('fs')
 const cookieParser = require('cookie-parser')
 const logger = require('morgan')
 const helmet = require('helmet')
+const session = require('express-session')
 
 const swaggerUI = require('swagger-ui-express')
 
@@ -12,7 +13,7 @@ const indexRouter = require('./routes/index')
 const apiRouter = require('./routes/api')
 const swaggerDocs = require('./routes/api-docs')
 
-const { LocaleController } = require('./controllers')
+const { LocaleController, LoginController } = require('./controllers')
 
 const dbConnect = require('./config/mongo')
 
@@ -37,12 +38,23 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 app.use(cookieParser())
 
+// routes website
 app.use(i18n.init)
 app.use(express.static('public'))
-
 app.use(helmet())
+app.use(session({
+  name: 'nodepop-session',
+  secret: 'ieryihdfgheuhgu2345hsdjfhio564e654jgjgd',
+  resave: false,
+  saveUninitialized: true,
+  cookie: {
+    maxAge: 1000 * 60 * 60 * 24 * 7
+  }
+}))
 app.use('/', indexRouter)
-app.use('/change-locale/:locale', LocaleController.changeLocale)
+app.get('/change-locale/:locale', LocaleController.changeLocale)
+app.get('/login', LoginController.index)
+app.post('/login', LoginController.postLogin)
 
 // routes api
 app.use('/apiv1', apiRouter)

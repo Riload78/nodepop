@@ -31,7 +31,9 @@ router.get('/', async (req, res, next) => {
 
   res.locals.data = result.data
   res.locals.count = result.count
-  res.render('index', { title: 'NodePOP' })
+  res.locals.subtitle = res.__('Home')
+  req.session.color = 'Rojo'
+  res.render('index', { title: 'NodePOP', color: req.session.color })
 })
 
 module.exports = router
