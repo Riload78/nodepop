@@ -1,3 +1,27 @@
 <%- include('header') %>
 <h1><%= title %> <span><%= subtitle %></span></h1>
+<div class="container">
+    <div class="row">
+        <div class="col-12 mt-5">
+            <h2><%= __('My account') %></h2>
+            <div class="d-flex">
+                <div class="border border-1 p-2 me-3">First item</div>
+                <div class="border border-1 p-2 me-3">Second item</div>
+                <div class="border border-1 p-2">Third item</div>
+            </div>
+
+        </div>
+        <div class="cols-12 my-5">
+             <h2><%= __('My products') %></h2>
+            <div class="vstack gap-3">
+                <div class="border border-1 p-2">First item</div>
+                <div class="border border-1 p-2">Second item</div>
+                <div class="border border-1 p-2">Third item</div>
+            </div>
+        </div>
+        <div class="cols-12">
+            <h2><%= __('Create new advert') %></h2>
+        </div>
+    </div>
+</div>
 <%- include('footer') %>
