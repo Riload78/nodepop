@@ -22,12 +22,20 @@ const postLogin = async (req, res, next) => {
     }
 
     req.session.userId = user._id
-    res.locals.session = req.session.userId
     res.redirect('/')
   } catch (error) {
     customLogger.error(error)
     next(error)
   }
 }
+const logOut = (req, res, next) => {
+  req.session.regenerate(err => {
+    if (err) {
+      console.log(err)
+      next(err)
+    }
+    res.redirect('/')
+  })
+}
 
-module.exports = { index, postLogin }
+module.exports = { index, postLogin, logOut }

@@ -1,5 +1,6 @@
 const mongoose = require('mongoose')
 require('dotenv').config()
+const customLogger = require('../lib/winstonConfig')
 
 const host = process.env.DB_HOST
 const port = process.env.DB_PORT
@@ -10,10 +11,12 @@ const dbConnect = async () => {
 
   try {
     await mongoose.connect(DB_URI)
-    console.log('DB connected')
   } catch (error) {
     console.log(`Error connecting to the database: ${error}`)
   }
 }
+
+mongoose.connection.on('error', (error) => customLogger.error(error.message))
+mongoose.connection.on('open', () => customLogger.info('DB connected desde connection open'))
 
 module.exports = dbConnect

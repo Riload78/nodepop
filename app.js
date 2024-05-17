@@ -6,7 +6,7 @@ const cookieParser = require('cookie-parser')
 const logger = require('morgan')
 const helmet = require('helmet')
 const session = require('express-session')
-
+const MongoStore = require('connect-mongo')
 const swaggerUI = require('swagger-ui-express')
 
 const indexRouter = require('./routes/index')
@@ -18,7 +18,9 @@ const authSession = require('./lib/authMiddleware')
 const dbConnect = require('./config/mongo')
 
 const i18n = require('./lib/i18nConfig')
-
+const host = process.env.DB_HOST
+const port = process.env.DB_PORT
+const dbName = process.env.DB_NAME
 const app = express()
 
 const accessLogStream = fs.createWriteStream(
@@ -37,25 +39,37 @@ app.use(logger('common', { stream: accessLogStream }))
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 app.use(cookieParser())
-
-// routes website
 app.use(i18n.init)
 app.use(express.static('public'))
 app.use(helmet())
-app.use(session({
-  name: 'nodepop-session',
-  secret: 'ieryihdfgheuhgu2345hsdjfhio564e654jgjgd',
-  resave: false,
-  saveUninitialized: true,
-  cookie: {
-    maxAge: 1000 * 60 * 60 * 24 * 7
-  }
-}))
+app.use(
+  session({
+    name: 'nodepop-session',
+    secret: 'ieryihdfgheuhgu2345hsdjfhio564e654jgjgd',
+    resave: false,
+    saveUninitialized: true,
+    cookie: {
+      maxAge: 1000 * 60 * 60 * 24 * 7
+    },
+    store: MongoStore.create({
+      mongoUrl: `mongodb://${host}:${port}/${dbName}`
+    })
+  })
+)
+
+// locals
+app.use((req, res, next) => {
+  res.locals.session = req.session.id
+  next()
+})
+
+// routes
 app.use('/', indexRouter)
-app.get('/change-locale/:locale', LocaleController.changeLocale)
+app.get('/logout', LoginController.logOut)
 app.get('/login', LoginController.index)
 app.post('/login', LoginController.postLogin)
 app.get('/customer-account', authSession, CustomerAccountController.index)
+app.get('/change-locale/:locale', LocaleController.changeLocale)
 
 // routes api
 app.use('/apiv1', apiRouter)
