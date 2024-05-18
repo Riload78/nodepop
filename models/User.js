@@ -3,7 +3,8 @@ const bcrypt = require('bcrypt')
 
 const userSchema = mongoose.Schema({
   email: { type: String, required: true, unique: true },
-  password: { type: String, required: true }
+  password: { type: String, required: true },
+  adverts: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Anuncio' }]
 })
 
 userSchema.statics.hashPassword = function (password) {

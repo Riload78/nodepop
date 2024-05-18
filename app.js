@@ -68,8 +68,8 @@ app.use('/', indexRouter)
 app.get('/logout', LoginController.logOut)
 app.get('/login', LoginController.index)
 app.post('/login', LoginController.postLogin)
-app.get('/customer-account', authSession, CustomerAccountController.index)
 app.get('/change-locale/:locale', LocaleController.changeLocale)
+app.get('/customer-account', authSession, CustomerAccountController.index)
 
 // routes api
 app.use('/apiv1', apiRouter)

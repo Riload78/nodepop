@@ -1,0 +1,74 @@
+{
+    "anuncios" : [
+        {
+            "nombre": "Silla plegable",
+            "venta": true,
+            "precio": 40,
+            "imagen": "sillaplegable.jpg",
+            "tags": ["hogar", "muebles"]
+        },
+        {
+            "nombre": "Horno eléctrico",
+            "venta": false,
+            "precio": 150,
+            "imagen": "horno.jpg",
+            "tags": ["electrodomesticos", "hogar"]
+        },
+        {
+            "nombre": "Pelota de baloncesto",
+            "venta": true,
+            "precio": 25,
+            "imagen": "baloncesto.jpg",
+            "tags": ["deportes", "juegos"]
+        },
+        {
+            "nombre": "Armario de ropa",
+            "venta": true,
+            "precio": 200,
+            "imagen": "armario.jpg",
+            "tags": ["hogar", "muebles"]
+        },
+        {
+            "nombre": "Licuadora Oster",
+            "venta": true,
+            "precio": 80,
+            "imagen": "licuadora.jpg",
+            "tags": ["electrodomesticos", "hogar"]
+        },
+        {
+            "nombre": "Raqueta de squash",
+            "venta": false,
+            "precio": 35,
+            "imagen": "raquetasquash.jpg",
+            "tags": ["deportes", "equipamiento"]
+        },
+        {
+            "nombre": "Mesa de noche",
+            "venta": true,
+            "precio": 60,
+            "imagen": "mesanoche.jpg",
+            "tags": ["hogar", "muebles"]
+        },
+        {
+            "nombre": "Secadora Whirlpool",
+            "venta": false,
+            "precio": 350,
+            "imagen": "secadora.jpg",
+            "tags": ["electrodomesticos", "hogar"]
+        },
+        {
+            "nombre": "Pelota de golf",
+            "venta": true,
+            "precio": 10,
+            "imagen": "golf.jpg",
+            "tags": ["deportes", "juegos"]
+        },
+        {
+            "nombre": "Sofá cama",
+            "venta": true,
+            "precio": 450,
+            "imagen": "sofacama.jpg",
+            "tags": ["hogar", "muebles"]
+        }
+    ]
+}
