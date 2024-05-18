@@ -38,8 +38,6 @@ router.get('/anuncios', async (req, res, next) => {
       nombre,
       sort
     )
-    customLogger.info('Hola informacion')
-    customLogger.debug(result)
     res.send(result)
   } catch (error) {
     customLogger.error(error)

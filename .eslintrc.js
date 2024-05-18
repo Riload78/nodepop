@@ -2,7 +2,8 @@ module.exports = {
   env: {
     commonjs: true,
     es2021: true,
-    node: true
+    node: true,
+    jest: true
   },
   extends: 'standard',
   overrides: [
@@ -22,5 +23,8 @@ module.exports = {
     ecmaVersion: 'latest'
   },
   rules: {
-  }
+  },
+  ignores: [
+    '**/node_modules/**'
+  ]
 }
