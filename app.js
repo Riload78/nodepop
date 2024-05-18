@@ -70,7 +70,7 @@ app.get('/login', LoginController.index)
 app.post('/login', LoginController.postLogin)
 app.get('/change-locale/:locale', LocaleController.changeLocale)
 app.get('/customer-account', authSession, CustomerAccountController.index)
-
+app.get('/delete/:id', authSession, CustomerAccountController.deleteProduct)
 // routes api
 app.use('/apiv1', apiRouter)
 app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerDocs))
