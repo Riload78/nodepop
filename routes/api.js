@@ -1,6 +1,8 @@
 const express = require('express')
 const router = express.Router()
+const jwt = require("jsonwebtoken");
 const { AnuncioController } = require('../controllers')
+const { User } = require('../models')
 const {
   getAnuncios,
   getTags,
@@ -18,6 +20,7 @@ router.get('/', async (req, res, next) => {
     message: 'Bienvenido a NodePOP API'
   })
 })
+
 
 router.get('/anuncios', async (req, res, next) => {
   try {
@@ -41,6 +44,7 @@ router.get('/anuncios', async (req, res, next) => {
     res.send(result)
   } catch (error) {
     customLogger.error(error)
+    res.sendStatus(500) // comprobar esto
     next(error)
   }
 })

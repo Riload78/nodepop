@@ -2,9 +2,6 @@ const supertest = require("supertest");
 const mongoose = require("mongoose");
 const app = require("../../app");
 const api = supertest(app);
-const Advert = require("../../models/Anuncio");
-
-
 
 describe("Api", () => {
 	it("Api should be running", async () => {

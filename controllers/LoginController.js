@@ -1,5 +1,5 @@
 const { User } = require('../models')
-
+const jwt = require('jsonwebtoken')
 const customLogger = require('../lib/winstonConfig')
 const index = (req, res) => {
   res.locals.subtitle = res.__('Login')
@@ -38,4 +38,24 @@ const logOut = (req, res, next) => {
   })
 }
 
-module.exports = { index, postLogin, logOut }
+const postAPIJWT = async (req, res, next) => {
+  try {
+    const { email, password } = req.body
+    // buscar usuario por email
+    const user = await User.findOne({ email })
+
+    if (!user || !(await user.verifyPassword(password))) {
+			return res.send({ error: "Wrong email or password" })
+		}
+
+    const tokenJWT = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
+      expiresIn: '2h',
+    })
+    res.json({ token: tokenJWT }); 
+  } catch (error) {
+    console.log(error);
+    next(error)
+  }
+}
+
+module.exports = { index, postLogin, logOut, postAPIJWT }
