@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1716406172043" clover="3.2.0">
-  <project timestamp="1716406172043" name="All files">
-    <metrics statements="1102" coveredstatements="773" conditionals="13" coveredconditionals="12" methods="23" coveredmethods="6" elements="1138" coveredelements="791" complexity="0" loc="1102" ncloc="1102" packages="6" files="20" classes="20"/>
+<coverage generated="1716415593879" clover="3.2.0">
+  <project timestamp="1716415593879" name="All files">
+    <metrics statements="1102" coveredstatements="776" conditionals="11" coveredconditionals="11" methods="23" coveredmethods="6" elements="1136" coveredelements="793" complexity="0" loc="1102" ncloc="1102" packages="6" files="20" classes="20"/>
     <package name="nodepop">
       <metrics statements="111" coveredstatements="111" conditionals="3" coveredconditionals="3" methods="0" coveredmethods="0"/>
       <file name="app.js" path="/Users/next/keepcoding-web/modulo-node/nodepop/app.js">
@@ -669,7 +669,7 @@
       </file>
     </package>
     <package name="nodepop.routes">
-      <metrics statements="502" coveredstatements="399" conditionals="4" coveredconditionals="3" methods="0" coveredmethods="0"/>
+      <metrics statements="502" coveredstatements="402" conditionals="2" coveredconditionals="2" methods="0" coveredmethods="0"/>
       <file name="api-docs.js" path="/Users/next/keepcoding-web/modulo-node/nodepop/routes/api-docs.js">
         <metrics statements="341" coveredstatements="341" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
         <line num="1" count="1" type="stmt"/>
@@ -1015,7 +1015,7 @@
         <line num="341" count="1" type="stmt"/>
       </file>
       <file name="api.js" path="/Users/next/keepcoding-web/modulo-node/nodepop/routes/api.js">
-        <metrics statements="119" coveredstatements="49" conditionals="4" coveredconditionals="3" methods="0" coveredmethods="0"/>
+        <metrics statements="119" coveredstatements="52" conditionals="2" coveredconditionals="2" methods="0" coveredmethods="0"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
         <line num="3" count="1" type="stmt"/>
@@ -1068,22 +1068,22 @@
         <line num="50" count="0" type="stmt"/>
         <line num="51" count="1" type="stmt"/>
         <line num="52" count="1" type="cond" truecount="1" falsecount="0"/>
-        <line num="53" count="2" type="stmt"/>
-        <line num="54" count="2" type="stmt"/>
-        <line num="55" count="2" type="stmt"/>
-        <line num="56" count="2" type="stmt"/>
-        <line num="57" count="2" type="stmt"/>
-        <line num="58" count="2" type="stmt"/>
-        <line num="59" count="2" type="stmt"/>
-        <line num="60" count="2" type="stmt"/>
-        <line num="61" count="2" type="stmt"/>
-        <line num="62" count="2" type="cond" truecount="1" falsecount="0"/>
-        <line num="63" count="1" type="stmt"/>
-        <line num="64" count="2" type="cond" truecount="0" falsecount="1"/>
-        <line num="65" count="0" type="stmt"/>
-        <line num="66" count="0" type="stmt"/>
-        <line num="67" count="0" type="stmt"/>
-        <line num="68" count="2" type="stmt"/>
+        <line num="53" count="4" type="stmt"/>
+        <line num="54" count="4" type="stmt"/>
+        <line num="55" count="4" type="stmt"/>
+        <line num="56" count="4" type="stmt"/>
+        <line num="57" count="4" type="stmt"/>
+        <line num="58" count="4" type="stmt"/>
+        <line num="59" count="4" type="stmt"/>
+        <line num="60" count="4" type="stmt"/>
+        <line num="61" count="4" type="stmt"/>
+        <line num="62" count="4" type="stmt"/>
+        <line num="63" count="4" type="stmt"/>
+        <line num="64" count="4" type="stmt"/>
+        <line num="65" count="4" type="stmt"/>
+        <line num="66" count="4" type="stmt"/>
+        <line num="67" count="4" type="stmt"/>
+        <line num="68" count="4" type="stmt"/>
         <line num="69" count="1" type="stmt"/>
         <line num="70" count="1" type="stmt"/>
         <line num="71" count="0" type="stmt"/>

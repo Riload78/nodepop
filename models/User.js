@@ -21,7 +21,7 @@ userSchema.methods.verifyPassword = function (password) {
 userSchema.methods.sendMail = async function (subject, body) {
   const transporter = await emailConfig()
   const result = await transporter.sendMail({
-    from: process.env.MAIL_USER,
+    from: process.env.MAIL_FROM,
     to: this.email,
     subject: subject,
     html: body

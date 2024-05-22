@@ -8,9 +8,12 @@
     "initDB": "node ./lib/initDB.js",
     "lint": "npx eslint --fix",
     "test": "NODE_ENV=test jest --verbose --detectOpenHandles --silent",
-    "test:watch": "NODE_ENV=test jest --verbose --silent --detectOpenHandles --watchAll"
+    "test:watch": "NODE_ENV=test jest --verbose --silent --detectOpenHandles --watchAll",
+    "publisher": "node ./amqp/publisher.js",
+    "consumer": "node ./amqp/consumer.js"
   },
   "dependencies": {
+    "amqplib": "^0.10.4",
     "bcrypt": "^5.1.1",
     "connect-mongo": "^5.1.0",
     "cookie-parser": "~1.4.4",
