@@ -8,6 +8,7 @@ const index = async (req, res, next) => {
     const user = await User.findById(userId).populate('adverts')
     if (!user) {
       next(createError(500, 'User not found'))
+      return
     }
     res.locals.subtitle = res.__('Customer Account')
     res.locals.user = user

@@ -66,14 +66,14 @@ app.use((req, res, next) => {
 
 // routes
 app.use('/', indexRouter)
-app.get('/logout', LoginController.logOut)
 app.get('/login', LoginController.index)
 app.post('/login', LoginController.postLogin)
+app.get('/logout', LoginController.logOut)
 app.get('/change-locale/:locale', LocaleController.changeLocale)
 app.get('/customer-account', authSession, CustomerAccountController.index)
 app.get('/delete/:id', authSession, CustomerAccountController.deleteProduct)
 // routes api
-app.post("/apiv1/auth", LoginController.postAPIJWT);
+app.post('/apiv1/auth', LoginController.postAPIJWT);
 app.use('/apiv1', jwtAuth, apiRouter);
 app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerDocs))
 

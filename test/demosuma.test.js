@@ -13,7 +13,7 @@ describe("Test de suma", () => {
 	it("Throw an error if Frist parameter must be a number", () => {
 		expect(() => suma("a", 1)).toThrow();
 	});
-	it("Throw an error if Frist parameter must be a number", () => {
-		expect(() => suma(1, null)).toThrow();
+	it("Throw an error if second parameter must be a number", () => {
+		expect(() => suma(1, null)).toThrow(); 
 	}); 
 });  

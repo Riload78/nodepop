@@ -10,8 +10,8 @@
   <body>
       <header class="d-flex flex-wrap px-4 align-items-center justify-content-center justify-content-md-between py-3 border-bottom">
           <div class="col-md-3 mb-2 mb-md-0">
-              <a href="/" class="d-inline-flex link-body-emphasis text-decoration-none">
-                  <h5><%= title %></h5>
+                <a href="<%= session ? '/' : '/login' %>" class="d-inline-flex link-body-emphasis text-decoration-none">
+                    <h5><%= title %></h5>
                 </a>
             </div>
 

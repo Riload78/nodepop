@@ -1,7 +1,7 @@
 const { User } = require('../models')
 const jwt = require('jsonwebtoken')
 const customLogger = require('../lib/winstonConfig')
-const index = (req, res) => {
+const index = (req, res, next) => {
   res.locals.subtitle = res.__('Login')
   res.locals.error = ''
   res.locals.email = ''
@@ -22,7 +22,8 @@ const postLogin = async (req, res, next) => {
     }
 
     req.session.userId = user._id
-    res.redirect('/')
+    await user.sendMail('Login', `Welcome ${user.email}`)
+    res.redirect('/customer-account')
   } catch (error) {
     customLogger.error(error)
     next(error)
@@ -31,11 +32,12 @@ const postLogin = async (req, res, next) => {
 const logOut = (req, res, next) => {
   req.session.regenerate(err => {
     if (err) {
-      console.log(err)
       next(err)
     }
-    res.redirect('/')
+    res.redirect('/login')
+    
   })
+  return
 }
 
 const postAPIJWT = async (req, res, next) => {
