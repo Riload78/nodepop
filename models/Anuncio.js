@@ -4,7 +4,7 @@ const Schema = mongoose.Schema
 const anuncioSchema = new Schema({
   nombre: { type: String, required: true, minlength: 5, index: true },
   venta: { type: Boolean, default: false, required: true },
-  precio: { type: Number, required: true, index: true },
+  precio: { type: String, required: true, index: true },
   imagen: { type: String },
   tags: [String]
 })

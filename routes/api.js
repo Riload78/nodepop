@@ -2,7 +2,7 @@ const express = require('express')
 const router = express.Router()
 const jwt = require("jsonwebtoken");
 const { AnuncioController } = require('../controllers')
-const { User } = require('../models')
+const upload = require('../lib/multerMiddleware')
 const {
   getAnuncios,
   getTags,
@@ -49,8 +49,13 @@ router.get('/anuncios', async (req, res, next) => {
   }
 })
 
-router.post('/anuncios', async (req, res, next) => {
-  const data = req.body
+router.post('/anuncios', upload.single('imagen'), async (req, res, next) => {
+  const dataFromRequest = req.body
+  const data = {
+    ...dataFromRequest,
+    image: req.file
+  }
+  console.log(data);
 
   try {
     const result = await createAnuncio(data)
