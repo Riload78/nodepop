@@ -1,6 +1,7 @@
 const { User } = require('../models')
 const jwt = require('jsonwebtoken')
 const customLogger = require('../lib/winstonConfig')
+const publisher = require('../lib/amqp/publisher')
 const index = (req, res, next) => {
   res.locals.subtitle = res.__('Login')
   res.locals.error = ''
@@ -22,7 +23,12 @@ const postLogin = async (req, res, next) => {
     }
 
     req.session.userId = user._id
-    await user.sendMail('Login', `Welcome ${user.email}`)
+    // await user.sendMail('Login', `Welcome ${user.email}`)
+   publisher({
+      subject: 'Login',
+      email: user.email,
+      body: `Welcome ${user.email}`
+    }, 'email')
     res.redirect('/customer-account')
   } catch (error) {
     customLogger.error(error)

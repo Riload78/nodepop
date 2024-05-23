@@ -9,8 +9,8 @@
     "lint": "npx eslint --fix",
     "test": "NODE_ENV=test jest --verbose --detectOpenHandles --silent",
     "test:watch": "NODE_ENV=test jest --verbose --silent --detectOpenHandles --watchAll",
-    "publisher": "node ./amqp/publisher.js",
-    "consumer": "node ./amqp/consumer.js"
+    "publisher": "node ./lib/amqp/publisher.js",
+    "consumer": "node ./lib/amqp/consumer.js"
   },
   "dependencies": {
     "amqplib": "^0.10.4",
