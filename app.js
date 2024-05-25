@@ -14,7 +14,7 @@ const apiRouter = require('./routes/api')
 const swaggerDocs = require('./routes/api-docs')
 
 const { LocaleController, LoginController, CustomerAccountController } = require('./controllers')
-const  jwtAuth  = require('./lib/jwtAuthMiddleware')
+const jwtAuth = require('./lib/jwtAuthMiddleware')
 const authSession = require('./lib/authMiddleware')
 const dbConnect = require('./config/mongo')
 
@@ -73,8 +73,8 @@ app.get('/change-locale/:locale', LocaleController.changeLocale)
 app.get('/customer-account', authSession, CustomerAccountController.index)
 app.get('/delete/:id', authSession, CustomerAccountController.deleteProduct)
 // routes api
-app.post('/apiv1/auth', LoginController.postAPIJWT);
-app.use('/apiv1', jwtAuth, apiRouter);
+app.post('/apiv1/auth', LoginController.postAPIJWT)
+app.use('/apiv1', jwtAuth, apiRouter)
 app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerDocs))
 
 // catch 404 and forward to error handler

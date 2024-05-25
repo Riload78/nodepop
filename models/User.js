@@ -1,8 +1,7 @@
 const mongoose = require('mongoose')
 const bcrypt = require('bcrypt')
-const emailConfig = require("../lib/emailConfig");
-const nodemailer = require("nodemailer");
-
+const emailConfig = require('../lib/emailConfig')
+const nodemailer = require('nodemailer')
 
 const userSchema = mongoose.Schema({
   email: { type: String, required: true, unique: true },
@@ -23,13 +22,12 @@ userSchema.methods.sendMail = async function (subject, body) {
   const result = await transporter.sendMail({
     from: process.env.MAIL_FROM,
     to: this.email,
-    subject: subject,
+    subject,
     html: body
   })
-  console.log(
-		`URL de previsualización: ${nodemailer.getTestMessageUrl(result)}`
-	);
-	return result;
+  console.log(`URL de previsualización: ${nodemailer.getTestMessageUrl(result)}`
+  )
+  return result
 }
 
 const User = mongoose.model('User', userSchema) // Exporting the model.

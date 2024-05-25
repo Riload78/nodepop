@@ -1,6 +1,5 @@
 const express = require('express')
 const router = express.Router()
-const jwt = require("jsonwebtoken");
 const { AnuncioController } = require('../controllers')
 const upload = require('../lib/multerMiddleware')
 const {
@@ -20,7 +19,6 @@ router.get('/', async (req, res, next) => {
     message: 'Bienvenido a NodePOP API'
   })
 })
-
 
 router.get('/anuncios', async (req, res, next) => {
   try {
@@ -53,9 +51,9 @@ router.post('/anuncios', upload.single('imagen'), async (req, res, next) => {
   const dataFromRequest = req.body
   const data = {
     ...dataFromRequest,
-    image: req.file
+    imagen: req.file.filename
   }
-  console.log(data);
+  console.log(data)
 
   try {
     const result = await createAnuncio(data)
@@ -72,7 +70,9 @@ router.get('/anuncios/:id', async (req, res, next) => {
   try {
     const result = await getAnuncioById(id)
     if (!result.status) return res.status(400).send({ error: result.message })
-    if (result.data === null) { return res.status(400).send({ error: `Ad with ID ${id} not found` }) }
+    if (result.data === null) {
+      return res.status(400).send({ error: `Ad with ID ${id} not found` })
+    }
     res.send(result)
   } catch (error) {
     console.log(error)

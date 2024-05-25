@@ -24,11 +24,14 @@ const postLogin = async (req, res, next) => {
 
     req.session.userId = user._id
     // await user.sendMail('Login', `Welcome ${user.email}`)
-   publisher({
-      subject: 'Login',
-      email: user.email,
-      body: `Welcome ${user.email}`
-    }, 'email')
+    publisher(
+      {
+        subject: 'Login',
+        email: user.email,
+        body: `Welcome ${user.email}`
+      },
+      'email'
+    )
     res.redirect('/customer-account')
   } catch (error) {
     customLogger.error(error)
@@ -36,14 +39,12 @@ const postLogin = async (req, res, next) => {
   }
 }
 const logOut = (req, res, next) => {
-  req.session.regenerate(err => {
+  req.session.regenerate((err) => {
     if (err) {
       next(err)
     }
     res.redirect('/login')
-    
   })
-  return
 }
 
 const postAPIJWT = async (req, res, next) => {
@@ -53,15 +54,15 @@ const postAPIJWT = async (req, res, next) => {
     const user = await User.findOne({ email })
 
     if (!user || !(await user.verifyPassword(password))) {
-			return res.send({ error: "Wrong email or password" })
-		}
+      return res.send({ error: 'Wrong email or password' })
+    }
 
     const tokenJWT = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
-      expiresIn: '2h',
+      expiresIn: '2h'
     })
-    res.json({ token: tokenJWT }); 
+    res.json({ token: tokenJWT })
   } catch (error) {
-    console.log(error);
+    console.log(error)
     next(error)
   }
 }

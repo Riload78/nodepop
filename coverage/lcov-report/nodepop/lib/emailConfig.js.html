@@ -123,36 +123,36 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">const nodeMailer = require("nodemailer");
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">const nodeMailer = require('nodemailer')
 const emailConfig = <span class="fstat-no" title="function not covered" >async () =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >	const testAccount = await nodeMailer.createTestAccount();</span>
+<span class="cstat-no" title="statement not covered" >  const testAccount = await nodeMailer.createTestAccount()</span>
 <span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >	const developerOptions = {</span>
-<span class="cstat-no" title="statement not covered" >		host: testAccount.smtp.host,</span>
-<span class="cstat-no" title="statement not covered" >		port: testAccount.smtp.port,</span>
-<span class="cstat-no" title="statement not covered" >		secure: testAccount.smtp.secure,</span>
-<span class="cstat-no" title="statement not covered" >		auth: {</span>
-<span class="cstat-no" title="statement not covered" >			user: testAccount.user,</span>
-<span class="cstat-no" title="statement not covered" >			pass: testAccount.pass,</span>
-<span class="cstat-no" title="statement not covered" >		},</span>
-<span class="cstat-no" title="statement not covered" >	};</span>
+<span class="cstat-no" title="statement not covered" >  const developerOptions = {</span>
+<span class="cstat-no" title="statement not covered" >    host: testAccount.smtp.host,</span>
+<span class="cstat-no" title="statement not covered" >    port: testAccount.smtp.port,</span>
+<span class="cstat-no" title="statement not covered" >    secure: testAccount.smtp.secure,</span>
+<span class="cstat-no" title="statement not covered" >    auth: {</span>
+<span class="cstat-no" title="statement not covered" >      user: testAccount.user,</span>
+<span class="cstat-no" title="statement not covered" >      pass: testAccount.pass</span>
+<span class="cstat-no" title="statement not covered" >    }</span>
+<span class="cstat-no" title="statement not covered" >  }</span>
 <span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >	const productionOptions = {</span>
-<span class="cstat-no" title="statement not covered" >		service: process.env.MAIL_SERVICE,</span>
-<span class="cstat-no" title="statement not covered" >		auth: {</span>
-<span class="cstat-no" title="statement not covered" >			user: process.env.MAIL_USER,</span>
-<span class="cstat-no" title="statement not covered" >			pass: process.env.MAIL_PASS,</span>
-<span class="cstat-no" title="statement not covered" >		},</span>
-<span class="cstat-no" title="statement not covered" >	};</span>
+<span class="cstat-no" title="statement not covered" >  const productionOptions = {</span>
+<span class="cstat-no" title="statement not covered" >    service: process.env.MAIL_SERVICE,</span>
+<span class="cstat-no" title="statement not covered" >    auth: {</span>
+<span class="cstat-no" title="statement not covered" >      user: process.env.MAIL_USER,</span>
+<span class="cstat-no" title="statement not covered" >      pass: process.env.MAIL_PASS</span>
+<span class="cstat-no" title="statement not covered" >    }</span>
+<span class="cstat-no" title="statement not covered" >  }</span>
 <span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >	const transporter = nodeMailer.createTransport(</span>
-<span class="cstat-no" title="statement not covered" >		process.env.NODE_ENV === "production" ? productionOptions : developerOptions</span>
-<span class="cstat-no" title="statement not covered" >	);</span>
+<span class="cstat-no" title="statement not covered" >  const transporter = nodeMailer.createTransport(</span>
+<span class="cstat-no" title="statement not covered" >    process.env.NODE_ENV === 'production' ? productionOptions : developerOptions</span>
+<span class="cstat-no" title="statement not covered" >  )</span>
 <span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >	return transporter;</span>
-<span class="cstat-no" title="statement not covered" >};</span>
+<span class="cstat-no" title="statement not covered" >  return transporter</span>
+<span class="cstat-no" title="statement not covered" >}</span>
 &nbsp;
-module.exports = emailConfig;
+module.exports = emailConfig
 &nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
@@ -160,7 +160,7 @@ module.exports = emailConfig;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2024-05-23T15:09:08.783Z
+                at 2024-05-25T07:08:38.746Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

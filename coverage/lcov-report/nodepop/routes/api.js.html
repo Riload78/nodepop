@@ -23,16 +23,16 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">41.17% </span>
+                <span class="strong">42.01% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>49/119</span>
+                <span class='fraction'>50/119</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">75% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>3/4</span>
+                <span class='fraction'>2/2</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">41.17% </span>
+                <span class="strong">42.01% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>49/119</span>
+                <span class='fraction'>50/119</span>
             </div>
         
             
@@ -199,12 +199,10 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -244,14 +242,16 @@
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -303,7 +303,6 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">const express = require('express')
 const router = express.Router()
-const jwt = require("jsonwebtoken");
 const { AnuncioController } = require('../controllers')
 const upload = require('../lib/multerMiddleware')
 const {
@@ -323,7 +322,6 @@ router.get('/', async (req, res, next) =&gt; {
     message: 'Bienvenido a NodePOP API'
   })
 })
-&nbsp;
 &nbsp;
 router.get('/anuncios', async (req, res, next) =&gt; {
 <span class="cstat-no" title="statement not covered" >  try {</span>
@@ -356,18 +354,18 @@ router.post('/anuncios', upload.single('imagen'), async (req, res, next) =&gt; {
   const dataFromRequest = req.body
   const data = {
     ...dataFromRequest,
-    image: req.file
+    imagen: req.file.filename
   }
-  console.log(data);
+  console.log(data)
 &nbsp;
   try {
     const result = await createAnuncio(data)
     if (!result.status) return res.status(400).send({ error: result.message })
     res.send(result)
-  } <span class="branch-0 cbranch-no" title="branch not covered" >catch (error) {</span>
-<span class="cstat-no" title="statement not covered" >    customLogger.error(error)</span>
-<span class="cstat-no" title="statement not covered" >    next(error)</span>
-<span class="cstat-no" title="statement not covered" >  }</span>
+  } catch (error) {
+    customLogger.error(error)
+    next(error)
+  }
 })
 &nbsp;
 router.get('/anuncios/:id', async (req, res, next) =&gt; {
@@ -375,7 +373,9 @@ router.get('/anuncios/:id', async (req, res, next) =&gt; {
 <span class="cstat-no" title="statement not covered" >  try {</span>
 <span class="cstat-no" title="statement not covered" >    const result = await getAnuncioById(id)</span>
 <span class="cstat-no" title="statement not covered" >    if (!result.status) return res.status(400).send({ error: result.message })</span>
-<span class="cstat-no" title="statement not covered" >    if (result.data === null) { return res.status(400).send({ error: `Ad with ID ${id} not found` }) }</span>
+<span class="cstat-no" title="statement not covered" >    if (result.data === null) {</span>
+<span class="cstat-no" title="statement not covered" >      return res.status(400).send({ error: `Ad with ID ${id} not found` })</span>
+<span class="cstat-no" title="statement not covered" >    }</span>
 <span class="cstat-no" title="statement not covered" >    res.send(result)</span>
 <span class="cstat-no" title="statement not covered" >  } catch (error) {</span>
 <span class="cstat-no" title="statement not covered" >    console.log(error)</span>
@@ -427,7 +427,7 @@ module.exports = router
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2024-05-23T15:09:08.783Z
+                at 2024-05-25T07:08:38.746Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

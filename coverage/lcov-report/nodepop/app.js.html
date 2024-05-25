@@ -23,16 +23,16 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">93.69% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>104/111</span>
+                <span class='fraction'>111/111</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">50% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>3/6</span>
+                <span class='fraction'>3/3</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">93.69% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>104/111</span>
+                <span class='fraction'>111/111</span>
             </div>
         
             
@@ -236,9 +236,9 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">13x</span>
+<span class="cline-any cline-yes">13x</span>
+<span class="cline-any cline-yes">13x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -264,19 +264,19 @@
 <span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-yes">4x</span>
@@ -301,7 +301,7 @@ const apiRouter = require('./routes/api')
 const swaggerDocs = require('./routes/api-docs')
 &nbsp;
 const { LocaleController, LoginController, CustomerAccountController } = require('./controllers')
-const  jwtAuth  = require('./lib/jwtAuthMiddleware')
+const jwtAuth = require('./lib/jwtAuthMiddleware')
 const authSession = require('./lib/authMiddleware')
 const dbConnect = require('./config/mongo')
 &nbsp;
@@ -360,8 +360,8 @@ app.get('/change-locale/:locale', LocaleController.changeLocale)
 app.get('/customer-account', authSession, CustomerAccountController.index)
 app.get('/delete/:id', authSession, CustomerAccountController.deleteProduct)
 // routes api
-app.post('/apiv1/auth', LoginController.postAPIJWT);
-app.use('/apiv1', jwtAuth, apiRouter);
+app.post('/apiv1/auth', LoginController.postAPIJWT)
+app.use('/apiv1', jwtAuth, apiRouter)
 app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerDocs))
 &nbsp;
 // catch 404 and forward to error handler
@@ -373,21 +373,21 @@ app.use(function (req, res, next) {
 app.use(function (err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message
-  res.locals.error = req.app.get('env') === 'development'<span class="branch-0 cbranch-no" title="branch not covered" > ? err </span>: {}
-  if (err.array) <span class="branch-0 cbranch-no" title="branch not covered" >{</span>
-<span class="cstat-no" title="statement not covered" >    const errInfo = err.array({})[0]</span>
-<span class="cstat-no" title="statement not covered" >    console.log(errInfo)</span>
-<span class="cstat-no" title="statement not covered" >    err.message = `Not valid - ${errInfo.type} in ${errInfo.location} ${errInfo.msg}`</span>
-<span class="cstat-no" title="statement not covered" >    err.status = 422</span>
-<span class="cstat-no" title="statement not covered" >  }</span>
+  res.locals.error = req.app.get('env') === 'development' ? err : {}
+  if (err.array) {
+    const errInfo = err.array({})[0]
+    console.log(errInfo)
+    err.message = `Not valid - ${errInfo.type} in ${errInfo.location} ${errInfo.msg}`
+    err.status = 422
+  }
 &nbsp;
   // si el fallo es en el API -&gt; responder en formato JSON
   if (req.originalUrl.startsWith('/apiv1/')) {
     res.json({ error: err })
     return
-<span class="branch-0 cbranch-no" title="branch not covered" >  }</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >  // render the error page</span>
+  }
+&nbsp;
+  // render the error page
   res.status(err.status || 500)
   res.render('error')
 })
@@ -403,7 +403,7 @@ module.exports = app
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2024-05-23T15:09:08.783Z
+                at 2024-05-25T07:08:38.746Z
             </div>
         <script src="../prettify.js"></script>
         <script>
