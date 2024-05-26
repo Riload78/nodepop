@@ -20,7 +20,7 @@
                     <div class="badge text-bg-primary rounded p-1"><%= advert.tags.join(', ') %></div>
                     <div class="ms-auto w-20 "> <%= advert.venta ? __('For sale'): __('For buy')%></div>
                     <div class="w-20 "><h4><%= advert.precio %></h4></div>
-                    <a class="btn btn-danger" href="/delete/<%= advert.id %>"><%= __('Delete') %></a>  
+                    <a id="delete-action" class="btn btn-danger" href="/delete/<%= advert.id %>"><%= __('Delete') %></a>  
                 </div>
                 <% }); %>
                 <% } else { %>
