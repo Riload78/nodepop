@@ -1,4 +1,4 @@
-const { Anuncio } = require('../models')
+const { Anuncio, User } = require('../models')
 
 /**
  * GET - ADS LIST
@@ -41,10 +41,13 @@ const getTags = async () => {
  * @returns {object}
  */
 
-const createAnuncio = async (data) => {
+const createAnuncio = async (data, userId) => {
   const newAnuncio = new Anuncio(data)
   try {
     await newAnuncio.save()
+    const newUser = await User.findById(userId)
+    newUser.adverts.push(newAnuncio._id)
+    await newUser.save()
     return { status: 'success', message: 'The ad has been created successfully' }
   } catch (error) {
     console.log(`There was an error saving the ad to the database: ${error}`)

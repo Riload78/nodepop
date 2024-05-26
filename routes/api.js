@@ -49,6 +49,7 @@ router.get('/anuncios', async (req, res, next) => {
 
 router.post('/anuncios', upload.single('imagen'), async (req, res, next) => {
   const dataFromRequest = req.body
+  const userId = req.user
   const data = {
     ...dataFromRequest,
     imagen: req.file.filename
@@ -56,7 +57,7 @@ router.post('/anuncios', upload.single('imagen'), async (req, res, next) => {
   console.log(data)
 
   try {
-    const result = await createAnuncio(data)
+    const result = await createAnuncio(data, userId)
     if (!result.status) return res.status(400).send({ error: result.message })
     res.send(result)
   } catch (error) {

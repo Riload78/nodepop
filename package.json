@@ -6,6 +6,7 @@
     "start": "NODE_ENV=production ./bin/www",
     "dev": "NODE_ENV=development DEBUG=nodepop:* nodemon ./bin/www",
     "initDB": "node ./lib/initDB.js",
+    "initDB:user": "node ./lib/initDBUser.js",
     "lint": "npx eslint --fix",
     "test": "NODE_ENV=test jest --verbose --detectOpenHandles --silent",
     "test:watch": "NODE_ENV=test jest --verbose --silent --detectOpenHandles --watchAll",
