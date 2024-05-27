@@ -52,11 +52,27 @@ const swaggerOptions = {
           type: 'object',
           // Definición del esquema para el modelo Anuncio
           properties: {
-            nombre: { type: 'string', required: true },
-            venta: { type: 'boolean', default: false, required: true },
-            precio: { type: 'number', required: true },
-            imagen: { type: 'string' },
-            tags: { type: 'array', items: { type: 'string' } },
+            imagen: {
+              type: 'string',
+              format: 'binary',
+              description: 'The image of the advertisement',
+            },
+            nombre: {
+              type: 'string',
+              description: 'The name of the advertisement',
+            },
+            venta: {
+              type: 'string',
+              description: 'Type true or false',
+            },
+            precio: {
+              type: 'string',
+              description: 'The price of the advertisement',
+            },
+            tags: {
+              type: 'string',
+              description: 'The tags of the advertisement',
+            },
           },
         },
         User: {
@@ -161,9 +177,16 @@ const swaggerOptions = {
           security: [{ bearerAuth: [] }],
           requestBody: {
             content: {
-              'application/json': {
+              'multipart/form-data': {
                 schema: {
                   $ref: '#/components/schemas/Anuncio',
+                },
+                encoding: {
+                  imagen: {
+                    headers: {
+                      contentType: 'image/png, image/jpeg',
+                    },
+                  },
                 },
               },
             },
