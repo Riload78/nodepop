@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">50% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>15/30</span>
+                <span class='fraction'>30/30</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/0</span>
+                <span class='fraction'>2/2</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/2</span>
+                <span class='fraction'>2/2</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">50% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>15/30</span>
+                <span class='fraction'>30/30</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line medium'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -100,23 +100,23 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -129,24 +129,24 @@ const publisher = require('./amqp/publisher')
 &nbsp;
 // decalarar una configuración de almacenamiento
 const storage = multer.diskStorage({
-  destination: <span class="fstat-no" title="function not covered" >function (req, file, callback) {</span>
-<span class="cstat-no" title="statement not covered" >    const ruta = path.join(__dirname, '..', 'public', 'images')</span>
-<span class="cstat-no" title="statement not covered" >    callback(null, ruta)</span>
+  destination: function (req, file, callback) {
+    const ruta = path.join(__dirname, '..', 'public', 'images')
+    callback(null, ruta)
   },
-  filename: <span class="fstat-no" title="function not covered" >function (req, file, callback) {</span>
-<span class="cstat-no" title="statement not covered" >    try {</span>
-<span class="cstat-no" title="statement not covered" >      console.log(file)</span>
-<span class="cstat-no" title="statement not covered" >      const parseOriginalname = file.originalname.split(' ').join('-')</span>
-<span class="cstat-no" title="statement not covered" >      const filename = `${file.fieldname}-${Date.now()}-${parseOriginalname}`</span>
-<span class="cstat-no" title="statement not covered" >      callback(null, filename)</span>
-<span class="cstat-no" title="statement not covered" >      publisher({</span>
-<span class="cstat-no" title="statement not covered" >        type: 'image',</span>
-<span class="cstat-no" title="statement not covered" >        image: filename</span>
-<span class="cstat-no" title="statement not covered" >      }, 'resize')</span>
-<span class="cstat-no" title="statement not covered" >    } catch (error) {</span>
-<span class="cstat-no" title="statement not covered" >      callback(error)</span>
-<span class="cstat-no" title="statement not covered" >    }</span>
-<span class="cstat-no" title="statement not covered" >  }</span>
+  filename: function (req, file, callback) {
+    try {
+      console.log(file)
+      const parseOriginalname = file.originalname.split(' ').join('-')
+      const filename = `${file.fieldname}-${Date.now()}-${parseOriginalname}`
+      callback(null, filename)
+      publisher({
+        type: 'resize',
+        image: filename
+      }, 'resize')
+    } catch (error) {
+      callback(error)
+    }
+  }
 })
 &nbsp;
 // decalrar la configuración del upload
@@ -160,7 +160,7 @@ module.exports = upload
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2024-05-25T07:58:12.799Z
+                at 2024-05-26T20:17:53.316Z
             </div>
         <script src="../../prettify.js"></script>
         <script>
