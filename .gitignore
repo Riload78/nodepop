@@ -9,6 +9,3 @@
 /public/images/imagen-*
 logs/*.log
 /coverage/
-
-/vendor/*
-!/vendor/.htaccess
