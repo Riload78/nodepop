@@ -15,7 +15,9 @@
                 <% if (Array.isArray(user.adverts)) { %>
                 <% user.adverts.map((advert) => { %>
                 <div class="border border-1 p-2 d-flex justify-content-between align-items-center gap-2">
-                    <div><img src="/images/thumbnail/<%= advert.imagen %>" alt="<%= advert.imagen %>"></div>
+                    <% if (advert.imagen) { %>
+                        <div><img src="/images/thumbnail/<%= advert.imagen %>" alt="<%= advert.imagen %>"></div>
+                    <% } %>
                     <div class="w-20"><%= advert.nombre %></div>
                     <div class="badge text-bg-primary rounded p-1"><%= advert.tags.join(', ') %></div>
                     <div class="ms-auto w-20 "> <%= advert.venta ? __('For sale'): __('For buy')%></div>
