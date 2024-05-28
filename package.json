@@ -7,7 +7,7 @@
     "dev": "NODE_ENV=development DEBUG=nodepop:* nodemon ./bin/www",
     "initDB": "node ./lib/initDB.js",
     "lint": "npx eslint --fix",
-    "test": "NODE_ENV=test jest --verbose --detectOpenHandles --silent",
+    "test": "NODE_ENV=test jest --verbose --runInBand --detectOpenHandles --silent",
     "test:watch": "NODE_ENV=test jest --verbose --silent --watchAll",
     "publisher": "node ./lib/amqp/publisher.js",
     "consumer": "node ./lib/amqp/consumer.js"

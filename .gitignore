@@ -2,5 +2,13 @@
 .history/
 *.env
 .vscode/
-public/.DS_Store
+.DS_Store
+/public/.DS_Store
+/public/images/thumbnail/*
+!/public/images/thumbnail/readme.md
+/public/images/imagen-*
 logs/*.log
+/coverage/
+
+/vendor/*
+!/vendor/.htaccess

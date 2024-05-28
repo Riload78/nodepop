@@ -4,8 +4,11 @@
     <div class="list-wrapper">
       <% data.forEach(function (item) { %>
         <div class="list-item">
-          
-          <img src='/images/<%= item.imagen %>'' alt="<%= item.imagen  %>">  
+          <% if (item.imagen !== '') { %>
+            <img src='/images/<%= item.imagen %>'' alt="<%= item.imagen  %>">  
+          <% } else { %>
+            <img src='/images/no-image.jpg'' alt="<%= item.imagen  %>">
+          <% } %>
           <h4 class="name"><%= item.nombre %></h4>
           <div class="info-wrapper">
             <div class="status sale">

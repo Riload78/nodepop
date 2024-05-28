@@ -50,10 +50,15 @@ router.get('/anuncios', async (req, res, next) => {
 router.post('/anuncios', upload.single('imagen'), async (req, res, next) => {
   const dataFromRequest = req.body
   const userId = req.user
+  if (req.file) {
+    dataFromRequest.imagen = req.file.filename
+  } else {
+    dataFromRequest.imagen = ''
+  }
   const data = {
     ...dataFromRequest,
-    imagen: req.file.filename
-  }
+    imagen: dataFromRequest.imagen
+  };
   console.log(data)
 
   try {
