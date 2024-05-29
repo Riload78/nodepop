@@ -1,5 +1,3 @@
-const { plugin } = require("mongoose");
-
 module.exports = {
   env: {
     commonjs: true,

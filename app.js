@@ -16,7 +16,7 @@ const swaggerDocs = require('./routes/api-docs')
 const { LocaleController, LoginController, CustomerAccountController } = require('./controllers')
 const jwtAuth = require('./lib/jwtAuthMiddleware')
 const authSession = require('./lib/authMiddleware')
-const dbConnect = require('./config/mongo')
+const{ dbConnect } = require('./config/mongo')
 
 const i18n = require('./lib/i18nConfig')
 const host = process.env.DB_HOST

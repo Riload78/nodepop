@@ -6,6 +6,7 @@
     "start": "NODE_ENV=production ./bin/www",
     "dev": "NODE_ENV=development DEBUG=nodepop:* nodemon ./bin/www",
     "initDB": "node ./lib/initDB.js",
+    "initDB:test": "NODE_ENV=test node ./lib/initDB.js",
     "lint": "npx eslint --fix",
     "test": "NODE_ENV=test jest --verbose --runInBand --detectOpenHandles --silent",
     "test:watch": "NODE_ENV=test jest --verbose --silent --watchAll",
@@ -45,7 +46,6 @@
     "eslint-plugin-n": "^16.6.2",
     "eslint-plugin-promise": "^6.1.1",
     "jest": "^29.7.0",
-    "mongodb-memory-server": "^9.2.0",
     "nodemon": "^3.0.3",
     "supertest": "^7.0.0"
   }

@@ -48,17 +48,16 @@ describe('Adverts API', () => {
   let token;
 
   beforeAll(async () => {
-    await mongoose.connect(`mongodb://${host}:${port}/${dbName}`);
+    
     const res = await api
       .post('/apiv1/auth')
       .send({ email: 'user@example.com', password: '1234' });
     token = res.body.token;
-    console.log(token);
   });
   
   
   afterAll(async () => {
-    await mongoose.connection.close();
+    await mongoose.connection.close(); 
   });
   
   it('Adverts should be retorned as json', async () => {
