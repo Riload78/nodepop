@@ -36,4 +36,26 @@ describe('Adverts API PUT', () => {
 			message: 'Unauthorized',
 		})
 	})
+	it('Api should be returning Adverts', async () => {
+		const advert = await Anuncio.findOne({})
+		advert.nombre='test 01 updated'
+		const res = await api
+      .put(`/apiv1/anuncios/${advert._id}`)
+      .send(advert)
+      .set('Authorization', token)
+      .expect(200)
+		expect(res.body.status).toBe('success')
+	})
+	it('Api should be retur an error id name not found', async () => {
+		const advert = await Anuncio.findOne({})
+    advert.nombre = 'test'
+		const res = await api
+      .put(`/apiv1/anuncios/${advert._id}`)
+      .send(advert)
+      .set('Authorization', token)
+      .expect(200)
+		expect(res.body.error).toStrictEqual({
+			message: 'The id is not valid',
+		})
+	})
 })

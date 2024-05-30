@@ -32,6 +32,7 @@ const postLogin = async (req, res, next) => {
     }, 'email')
 
     customLogger.info(`User ${user.email} logged in`)
+    return
   } catch (error) {
     customLogger.error(error)
     next(error)
