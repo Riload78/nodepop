@@ -1,6 +1,6 @@
 const supertest = require('supertest')
 const mongoose = require('mongoose')
-const jwtAuth = require('../../lib/jwtAuthMiddleware')
+const { Anuncio } = require('../../models')
 const app = require('../../app')
 const api = supertest(app)
 const { describe, it, expect } = require('@jest/globals')
@@ -33,11 +33,31 @@ describe('Adverts API GET', () => {
       message: 'Unauthorized',
     })
   })
-
   it('Api should be returning Adverts', async () => {
     const res = await api
     .get('/apiv1/anuncios')
     .set('Authorization', token)
-    .expect(200) 
+    .expect(200)
+    expect(res.body).toHaveProperty('data')
   })
+
+  it('Api should be returning Error 404', async () => {
+    const res = await api
+      .get('/apiv1/anuncios/123')
+      .set('Authorization', token)
+      .expect(400)
+    expect(res.body.error).toContain('Cast to ObjectId failed')
+  })
+
+  it('Api should be returning a Advert', async () => {
+    const advert = await Anuncio.findOne({})
+    const res = await api
+      .get(`/apiv1/anuncios/${advert._id}`)
+      .set('Authorization', token)
+      .expect(200)
+    expect(res.body).toHaveProperty('data')
+    expect(res.body.data).toHaveProperty('_id')
+    
+  })
+
 })

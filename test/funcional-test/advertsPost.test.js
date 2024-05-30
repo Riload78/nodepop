@@ -1,6 +1,5 @@
 const supertest = require('supertest')
 const mongoose = require('mongoose')
-const jwtAuth = require('../../lib/jwtAuthMiddleware')
 const app = require('../../app')
 const api = supertest(app)
 const { describe, it, expect } = require('@jest/globals')
