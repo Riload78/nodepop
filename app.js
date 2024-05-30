@@ -64,7 +64,7 @@ app.use((req, res, next) => {
   next()
 })
 
-// routes
+// routes web
 app.use('/', indexRouter)
 app.get('/login', LoginController.index)
 app.post('/login', LoginController.postLogin)

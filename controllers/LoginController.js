@@ -23,6 +23,7 @@ const postLogin = async (req, res, next) => {
     }
 
     req.session.userId = user._id
+    res.redirect('/customer-account')
 
     publisher({
       subject: 'Login',
@@ -30,7 +31,7 @@ const postLogin = async (req, res, next) => {
       body: `Welcome ${user.email}`
     }, 'email')
 
-    res.redirect('/customer-account')
+    customLogger.info(`User ${user.email} logged in`)
   } catch (error) {
     customLogger.error(error)
     next(error)
