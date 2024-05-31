@@ -15,9 +15,9 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: exchange
-          path: ../exchange.png
+          path: .github/exchange.png
       - name: Upload image 2
         uses: actions/upload-artifact@v2
         with:
           name: queue
-          path: ../queue.png
+          path: .github/queue.png
