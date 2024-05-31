@@ -9,6 +9,9 @@ Develop the API that will run on the server of a service selling articles. The s
 ![Static Badge](https://img.shields.io/badge/EJS-F679FC)
 ![Static Badge](https://img.shields.io/badge/SWAGEER-BD415B)
 
+Wiston
+RabbitMQ
+
 ## Run Locally
 
 Clone the project
@@ -40,19 +43,64 @@ Duplicate .env.template file and rename as .env . After complete required inform
 DB_HOST=
 DB_PORT=
 DB_NAME=
+DB_TEST_NAME=
+JWT_SECRET=
+MAIL_FROM=
+MAIL_SERVICE=
+MAIL_USER=
+MAIL_PASS=
+AMQP_URL=
 ```
 
-Install Database
+### Install Database
 
+Ejecutar los dos comandos para instalar la base de datos de la aplicacion y la de testing
+
+Database for App
 ```bash
   npm run initDB
+```
+Install Database for Testing
+```bash
+  npm run initDB:test
+```
+
+### Install RabbitMQ Server and config
 
 ```
+docker run -d --hostname=mq --name mq -p 8080:15672 -p 5672:5672 rabbitmq:3-management
+```
+Es posible que haya que anadir al nuesto vhost
+```
+127.0.0.1 mq
+```
+#### Configuracion del Exchange
+Ejecutar por consola los siguientes comandos para arrancar las colas
+
+```bash
+  npm run publisher
+```
+```bash
+  npm run consumer
+```
+Acceder al panel de RabbitMq 
+![Imagen 1](https://raw.githubusercontent.com/Riload78/nodepop/main/exchange.png)
+![Imagen 2](https://raw.githubusercontent.com/Riload78/nodepop/main/queue.png)
 
 Start the server
 
 ```bash
   npm run dev
+```
+
+Test
+
+Para ejecutar los test, previamente se tiene que instalar la BBDD de test
+```bash
+  npm run test
+```
+```bash
+  npm run test:watch
 ```
 
 
