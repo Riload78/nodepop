@@ -84,7 +84,7 @@ Ejecutar por consola los siguientes comandos para arrancar las colas
   npm run consumer
 ```
 Acceder al panel de RabbitMq 
-![Imagen 1](https://raw.githubusercontent.com/Riload78/nodepop/main/exchange.png)
+![Imagen 1](https://raw.githubusercontent.com/Riload78/nodepop/main/public/images/github/exchange.png)
 ![Imagen 2](https://raw.githubusercontent.com/Riload78/nodepop/main/queue.png)
 
 Start the server
