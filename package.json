@@ -5,7 +5,7 @@
   "scripts": {
     "start": "NODE_ENV=production ./bin/www",
     "dev": "NODE_ENV=development DEBUG=nodepop:* nodemon ./bin/www",
-    "initDB": "node ./lib/initDB.js",
+    "initDB": "NODE_ENV=development node ./lib/initDB.js",
     "initDB:test": "NODE_ENV=test node ./lib/initDB.js",
     "lint": "npx eslint --fix",
     "test": "NODE_ENV=test jest --verbose --runInBand --detectOpenHandles --silent",
