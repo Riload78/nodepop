@@ -14,10 +14,10 @@ jobs:
       - name: Upload image 1
         uses: actions/upload-artifact@v2
         with:
-          name: imagen1
+          name: exchange
           path: public/images/github/exchange.png
       - name: Upload image 2
         uses: actions/upload-artifact@v2
         with:
-          name: imagen2
+          name: queue
           path: public/images/github/queue.png
