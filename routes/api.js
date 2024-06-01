@@ -13,6 +13,7 @@ const {
 
 const customLogger = require('../lib/winstonConfig')
 
+
 /* Info. */
 router.get('/', async (req, res, next) => {
   res.send({
@@ -22,6 +23,17 @@ router.get('/', async (req, res, next) => {
 
 router.get('/anuncios', async (req, res, next) => {
   try {
+    console.log(req.client);
+    const client = req.client
+    const reply = await client.get('anuncios')
+    console.log(reply);
+
+    if (reply) {
+      const anuncios = JSON.parse(reply)
+      console.log(anuncios);
+      res.send(anuncios)
+      return
+    }
     const skip = req.query.skip
     const limit = req.query.limit
     const tags = req.query.tags
@@ -29,6 +41,8 @@ router.get('/anuncios', async (req, res, next) => {
     const precio = req.query.precio
     const nombre = req.query.nombre
     const sort = req.query.sort
+
+
 
     const result = await getAnuncios(
       skip,
@@ -39,6 +53,9 @@ router.get('/anuncios', async (req, res, next) => {
       nombre,
       sort
     )
+    await client.set('anuncios', JSON.stringify(result))
+    const value = await client.get('anuncios')
+    console.log('value', value);
     res.send(result)
   } catch (error) {
     customLogger.error(error)
@@ -81,7 +98,7 @@ router.get('/anuncios/:id', async (req, res, next) => {
     }
     res.send(result)
   } catch (error) {
-    console.log(error)
+    customLogger.error(error)
     next(error)
   }
 })
@@ -93,7 +110,7 @@ router.put('/anuncios/:id', async (req, res, next) => {
     if (!result.status) return res.status(400).send({ error: result.message })
     res.send(result)
   } catch (error) {
-    console.error(error)
+    customLogger.error(error)
     next(error)
   }
 })
@@ -105,6 +122,7 @@ router.delete('/anuncios/:id', async (req, res, next) => {
     if (!result.status) return res.status(400).send({ error: result.message })
     res.send(result)
   } catch (error) {
+    customLogger.error(error)
     next(error)
   }
 })
@@ -115,10 +133,8 @@ router.get('/tags', async (req, res, next) => {
     if (!result.status) return res.status(400).json(result.errors)
     res.send(result)
   } catch (error) {
-    console.log(error)
-    res
-      .status(500)
-      .json({ error: 'Ocurrió un error al obtener las etiquetas' })
+    customLogger.error(error)
+    next(error)
   }
 })
 

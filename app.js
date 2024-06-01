@@ -17,6 +17,7 @@ const { LocaleController, LoginController, CustomerAccountController } = require
 const jwtAuth = require('./lib/jwtAuthMiddleware')
 const authSession = require('./lib/authMiddleware')
 const{ dbConnect } = require('./config/mongo')
+const { redisMiddleware } = require('./lib/redisMiddleware')
 
 const i18n = require('./lib/i18nConfig')
 const host = process.env.DB_HOST
@@ -74,7 +75,7 @@ app.get('/customer-account', authSession, CustomerAccountController.index)
 app.get('/delete/:id', authSession, CustomerAccountController.deleteProduct)
 // routes api
 app.post('/apiv1/auth', LoginController.postAPIJWT)
-app.use('/apiv1', jwtAuth, apiRouter)
+app.use('/apiv1', jwtAuth, redisMiddleware, apiRouter)
 app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerDocs))
 
 // catch 404 and forward to error handler

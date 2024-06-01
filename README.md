@@ -1,16 +1,32 @@
 
 # NodePOP
 
-Develop the API that will run on the server of a service selling articles. The service maintains advertisements for the purchase or sale of items and allows you to search and filter by various criteria
+Develop the API that will run on the server of a service selling articles. The service maintains advertisements for the purchase or sale of items and allows you to search and filter by various criteria. El servidor da servicio a una API y a un website.
+Dispone de dos formas de autentificación, JWT para la API y un sistema de sesiones para la parte del website.
+El website esta realizado con plantillas EJS y dispone de un sistema de traducción. Además, dispone de un área de usuario donde se listan los productos del usuario 
+Para los servicios de cola, se ha usado RabbitMQ que gestiona el envio de emails cuando el usuario se logea y un servicio de creación de thumbnails cuando se crean nuevos productos.
+
+Se ha utilizado Jest y Supertest para la testeo de la API
+Se ha implementado un sistema de logs
+
 
 ![Static Badge](https://img.shields.io/badge/NODE-8A2BE2)
 ![Static Badge](https://img.shields.io/badge/EXPRESS-94E33B)
 ![Static Badge](https://img.shields.io/badge/MONGO-EDCE72)
 ![Static Badge](https://img.shields.io/badge/EJS-F679FC)
 ![Static Badge](https://img.shields.io/badge/SWAGEER-BD415B)
+![Static Badge](https://img.shields.io/badge/EJS-BD415B)
+![Static Badge](https://img.shields.io/badge/JWT)
+![Static Badge](https://img.shields.io/badge/JEST)
+![Static Badge](https://img.shields.io/badge/SUPERTEST)
 
-Wiston
-RabbitMQ
+
+
+Sistema de Logs - winston
+
+Servicio de colas - RabbitMQ
+
+JWT - 
 
 ## Run Locally
 
@@ -50,6 +66,7 @@ MAIL_SERVICE=
 MAIL_USER=
 MAIL_PASS=
 AMQP_URL=
+REDIS_URI=
 ```
 
 ### Install Database
@@ -58,19 +75,21 @@ Ejecutar los dos comandos para instalar la base de datos de la aplicacion y la d
 
 Database for App
 ```bash
-  npm run initDB
-```
-Install Database for Testing
-```bash
-  npm run initDB:test
+npm run initDB
 ```
 
-### Install RabbitMQ Server and config
-
-```
-docker run -d --hostname=mq --name mq -p 8080:15672 -p 5672:5672 rabbitmq:3-management
-```
-Es posible que haya que anadir al nuesto vhost
+### Install docker dependencies
+Instalación de Redis y RabbitMQ
+````
+docker-compose up -d redis  mq
+````
+Para acceder a Redis por consola
+````
+docker exec -it <Container id> /bin/sh
+redis-cli
+````
+### RabbitMQ config
+Es posible que haya que anadir al vhost
 ```
 127.0.0.1 mq
 ```
@@ -78,24 +97,38 @@ Es posible que haya que anadir al nuesto vhost
 Ejecutar por consola los siguientes comandos para arrancar las colas
 
 ```bash
-  npm run publisher
+npm run publisher
 ```
 ```bash
-  npm run consumer
+npm run consumer
 ```
-Acceder al panel de RabbitMq 
-![Imagen 1](https://raw.githubusercontent.com/Riload78/nodepop/main/asset-github/exchange.png)
-![Imagen 2](https://raw.githubusercontent.com/Riload78/nodepop/main/queue.png)
+Acceder al panel de RabbitMq y configurar el enrutamiento del exchange
+Para acceder al panel de RabbitMQ se debe de hacer por el puerto 8080. Por ejemplo
 
-Start the server
+Credenciales:
+Username: guest
+Password: guest
+````
+http://localhost:8080/
+````
+
+![Imagen 1](https://raw.githubusercontent.com/Riload78/nodepop/main/asset-github/exchange.png)
+![Imagen 2](https://raw.githubusercontent.com/Riload78/nodepop/main/asset-github/queue.png)
+
+## Start the server
 
 ```bash
   npm run dev
 ```
 
-Test
+## Test
 
 Para ejecutar los test, previamente se tiene que instalar la BBDD de test
+Install Database for Testing
+```bash
+  npm run initDB:test
+```
+Ejecutar los test
 ```bash
   npm run test
 ```
@@ -105,7 +138,7 @@ Para ejecutar los test, previamente se tiene que instalar la BBDD de test
 
 
 ## API Reference
-When server is running, you cant access to the documentation **[here](http://localhost:3000/api-docs/#/Anuncios/getAnuncios)** 
+When server is running, you cant access to the documentation **[http://localhost:3000/api-docs/](http://localhost:3000/api-docs/#/Anuncios/getAnuncios)** 
 
 #### Get all items
 
