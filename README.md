@@ -15,10 +15,13 @@ Se ha implementado un sistema de logs
 ![Static Badge](https://img.shields.io/badge/MONGO-EDCE72)
 ![Static Badge](https://img.shields.io/badge/EJS-F679FC)
 ![Static Badge](https://img.shields.io/badge/SWAGEER-BD415B)
-![Static Badge](https://img.shields.io/badge/EJS-BD415B)
-![Static Badge](https://img.shields.io/badge/JWT)
-![Static Badge](https://img.shields.io/badge/JEST)
-![Static Badge](https://img.shields.io/badge/SUPERTEST)
+![Static Badge](https://img.shields.io/badge/JWT-3F7C85)
+![Static Badge](https://img.shields.io/badge/JEST-00CCBF)
+![Static Badge](https://img.shields.io/badge/SUPERTEST-72F2EB)
+![Static Badge](https://img.shields.io/badge/RABBITMQ-747E7E)
+![Static Badge](https://img.shields.io/badge/REDIS-103778)
+![Static Badge](https://img.shields.io/badge/WINSTON-FF7A48)
+
 
 
 

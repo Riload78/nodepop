@@ -2,6 +2,7 @@ const express = require('express')
 const router = express.Router()
 const { AnuncioController } = require('../controllers')
 const upload = require('../lib/multerMiddleware')
+
 const {
   getAnuncios,
   getTags,
@@ -23,14 +24,11 @@ router.get('/', async (req, res, next) => {
 
 router.get('/anuncios', async (req, res, next) => {
   try {
-    console.log(req.client);
-    const client = req.client
-    const reply = await client.get('anuncios')
-    console.log(reply);
+    const reply = await req.client.get('anuncios')
 
     if (reply) {
       const anuncios = JSON.parse(reply)
-      console.log(anuncios);
+      req.client.quit()
       res.send(anuncios)
       return
     }
@@ -53,10 +51,10 @@ router.get('/anuncios', async (req, res, next) => {
       nombre,
       sort
     )
-    await client.set('anuncios', JSON.stringify(result))
-    const value = await client.get('anuncios')
-    console.log('value', value);
+    await req.client.set('anuncios', JSON.stringify(result))
+    req.client.quit()
     res.send(result)
+
   } catch (error) {
     customLogger.error(error)
     res.sendStatus(500) // comprobar esto
@@ -90,12 +88,23 @@ router.post('/anuncios', upload.single('imagen'), async (req, res, next) => {
 
 router.get('/anuncios/:id', async (req, res, next) => {
   const id = req.params.id
+  const client = req.client
+  const reply = await client.get(`anuncio-${id}`)
+  if (reply) {
+    const anuncio = JSON.parse(reply)
+    req.client.quit()
+    res.send(anuncio)
+    return
+  }
+
   try {
     const result = await getAnuncioById(id)
     if (!result.status) return res.status(400).send({ error: result.message })
     if (result.data === null) {
       return res.status(400).send({ error: `Ad with ID ${id} not found` })
     }
+    await client.set(`anuncio-${id}`, JSON.stringify(result))
+    req.client.quit()
     res.send(result)
   } catch (error) {
     customLogger.error(error)
