@@ -3,18 +3,17 @@
 
 Develop the API that will run on the server of a service selling articles. The service maintains advertisements for the purchase or sale of items and allows you to search and filter by various criteria. El servidor da servicio a una API y a un website.
 
-Dispone de dos formas de autentificación, JWT para la API y un sistema de sesiones para la parte del website.
+It has two forms of authentication, JWT for the API and a session system for the website part.
 
-El website esta realizado con plantillas EJS y dispone de un sistema de traducción. Además, dispone de un área de usuario donde se listan los productos del usuario 
+The website is made with EJS templates and has a translation system. In addition, it has a user area where the user's products are listed. 
 
-Para los servicios de cola, se ha usado RabbitMQ que gestiona el envio de emails cuando el usuario se logea y un servicio de creación de thumbnails cuando se crean nuevos productos.
+For the queue services, RabbitMQ has been used, which manages the sending of emails when the user logs in and a thumbnail creation service when new products are created.
 
-Se ha utilizado Jest y Supertest para la testeo de la API
+Jest and Supertest have been used for API testing
 
-Se ha implementado un sistema de logs
+A log system has been implemented with Winston
 
-Sistema de chache de la API con Redis
-
+Chache system API with Redis
 
 ![Static Badge](https://img.shields.io/badge/NODE-8A2BE2)
 ![Static Badge](https://img.shields.io/badge/EXPRESS-94E33B)
@@ -71,7 +70,7 @@ AMQP_URL=
 
 ### Install Database
 
-Ejecutar los dos comandos para instalar la base de datos de la aplicacion y la de testing
+Run the two commands to install the application database and the testing database
 
 Database for App
 ```bash
@@ -79,22 +78,22 @@ npm run initDB
 ```
 
 ### Install docker dependencies
-Instalación de Redis y RabbitMQ
+Installing Redis and RabbitMQ
 ````
 docker-compose up -d redis  mq
 ````
-Para acceder a Redis por consola
+To access Redis via console
 ````
 docker exec -it <Container id> /bin/sh
 redis-cli
 ````
 ### RabbitMQ config
-Es posible que haya que anadir al vhost
+May need to be added to vhost
 ```
 127.0.0.1 mq
 ```
-#### Configuracion del Exchange
-Ejecutar por consola los siguientes comandos para arrancar las colas
+#### Exchange Configuration
+Execute the following commands through the console to start the queues
 
 ```bash
 npm run publisher
@@ -102,15 +101,15 @@ npm run publisher
 ```bash
 npm run consumer
 ```
-Acceder al panel de RabbitMq y configurar el enrutamiento del exchange
-Para acceder al panel de RabbitMQ se debe de hacer por el puerto 8080. Por ejemplo
-
-Credenciales:
-Username: guest
-Password: guest
+Access the RabbitMq dashboard and configure exchange routing
+To access the RabbitMQ panel it must be done through port 8080. For example
 ````
 http://localhost:8080/
 ````
+
+Credenciales:
+Username: guest - Password: guest
+
 
 ![Imagen 1](https://raw.githubusercontent.com/Riload78/nodepop/main/asset-github/exchange.png)
 ![Imagen 2](https://raw.githubusercontent.com/Riload78/nodepop/main/asset-github/queue.png)
@@ -123,18 +122,24 @@ http://localhost:8080/
 
 ## Test
 
-Para ejecutar los test, previamente se tiene que instalar la BBDD de test
+To run the tests, you must first install the test DB
 Install Database for Testing
 ```bash
   npm run initDB:test
 ```
-Ejecutar los test
+Run the testst
 ```bash
   npm run test
 ```
 ```bash
   npm run test:watch
 ```
+
+## User Credentials for the Website
+Username: user@example.com - Password: 1234
+
+
+Username: user2@example.com - Password: 1234
 
 
 ## API Reference
@@ -212,9 +217,9 @@ When server is running, you cant access to the documentation **[http://localhost
 
 ## Roadmap
 In progress
-- Uploads Images
+- Delegate LOGS to microservices
 
-- Add more integrations
+- Improve API performance
 
 
 ## 🔗 Links
