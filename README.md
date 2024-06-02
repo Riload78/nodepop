@@ -2,12 +2,18 @@
 # NodePOP
 
 Develop the API that will run on the server of a service selling articles. The service maintains advertisements for the purchase or sale of items and allows you to search and filter by various criteria. El servidor da servicio a una API y a un website.
+
 Dispone de dos formas de autentificación, JWT para la API y un sistema de sesiones para la parte del website.
+
 El website esta realizado con plantillas EJS y dispone de un sistema de traducción. Además, dispone de un área de usuario donde se listan los productos del usuario 
+
 Para los servicios de cola, se ha usado RabbitMQ que gestiona el envio de emails cuando el usuario se logea y un servicio de creación de thumbnails cuando se crean nuevos productos.
 
 Se ha utilizado Jest y Supertest para la testeo de la API
+
 Se ha implementado un sistema de logs
+
+Sistema de chache de la API con Redis
 
 
 ![Static Badge](https://img.shields.io/badge/NODE-8A2BE2)
@@ -22,14 +28,6 @@ Se ha implementado un sistema de logs
 ![Static Badge](https://img.shields.io/badge/REDIS-103778)
 ![Static Badge](https://img.shields.io/badge/WINSTON-FF7A48)
 
-
-
-
-Sistema de Logs - winston
-
-Servicio de colas - RabbitMQ
-
-JWT - 
 
 ## Run Locally
 

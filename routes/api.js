@@ -9,16 +9,15 @@ const {
   createAnuncio,
   updateAnuncio,
   getAnuncioById,
-  deleteAnuncio
+  deleteAnuncio,
 } = AnuncioController
 
 const customLogger = require('../lib/winstonConfig')
 
-
 /* Info. */
 router.get('/', async (req, res, next) => {
   res.send({
-    message: 'Bienvenido a NodePOP API'
+    message: 'Bienvenido a NodePOP API',
   })
 })
 
@@ -40,8 +39,6 @@ router.get('/anuncios', async (req, res, next) => {
     const nombre = req.query.nombre
     const sort = req.query.sort
 
-
-
     const result = await getAnuncios(
       skip,
       limit,
@@ -49,12 +46,11 @@ router.get('/anuncios', async (req, res, next) => {
       venta,
       precio,
       nombre,
-      sort
+      sort,
     )
     await req.client.set('anuncios', JSON.stringify(result))
     req.client.quit()
     res.send(result)
-
   } catch (error) {
     customLogger.error(error)
     res.sendStatus(500) // comprobar esto
@@ -72,9 +68,8 @@ router.post('/anuncios', upload.single('imagen'), async (req, res, next) => {
   }
   const data = {
     ...dataFromRequest,
-    imagen: dataFromRequest.imagen
-  };
-  console.log(data)
+    imagen: dataFromRequest.imagen,
+  }
 
   try {
     const result = await createAnuncio(data, userId)
@@ -138,8 +133,18 @@ router.delete('/anuncios/:id', async (req, res, next) => {
 
 router.get('/tags', async (req, res, next) => {
   try {
+    const reply = await req.client.get('tags')
+
+    if (reply) {
+      const tags = JSON.parse(reply)
+      req.client.quit()
+      res.send(tags)
+      return
+    }
     const result = await getTags()
     if (!result.status) return res.status(400).json(result.errors)
+    await req.client.set('tags', JSON.stringify(result))
+    req.client.quit()
     res.send(result)
   } catch (error) {
     customLogger.error(error)

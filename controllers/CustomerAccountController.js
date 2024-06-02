@@ -13,6 +13,7 @@ const index = async (req, res, next) => {
     res.locals.subtitle = res.__('Customer Account')
     res.locals.user = user
     res.render('customer-account', { title: 'NODEPOP' })
+    
   } catch (error) {
     next(error)
   }

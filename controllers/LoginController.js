@@ -23,16 +23,16 @@ const postLogin = async (req, res, next) => {
     }
 
     req.session.userId = user._id
-    res.redirect('/customer-account')
-
+    req.session.isAuthenticated = true
+    
     publisher({
       subject: 'Login',
       email: user.email,
       body: `Welcome ${user.email}`
     }, 'email')
-
     customLogger.info(`User ${user.email} logged in`)
-    return
+    
+    res.redirect('/customer-account')
   } catch (error) {
     customLogger.error(error)
     next(error)
@@ -42,7 +42,9 @@ const logOut = (req, res, next) => {
   req.session.regenerate((err) => {
     if (err) {
       next(err)
+      return
     }
+    req.session.isAuthenticated = false
     res.redirect('/login')
   })
 }

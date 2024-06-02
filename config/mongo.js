@@ -16,7 +16,7 @@ const dbConnect = async () => {
     }
     await mongoose.connect(DB_URI)
   } catch (error) {
-    console.log(`Error connecting to the database: ${error}`)
+    customLogger.error(error)
   }
 }
 
@@ -33,6 +33,6 @@ const disconnectDB = async () => {
 };
 
 mongoose.connection.on('error', (error) => customLogger.error(error.message))
-mongoose.connection.on('open', () => customLogger.info('DB connected desde connection open'))
+//mongoose.connection.on('open', () => customLogger.info('DB connected desde connection open'))
 
 module.exports = {dbConnect, disconnectDB}
