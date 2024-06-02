@@ -23,7 +23,7 @@ const postLogin = async (req, res, next) => {
     }
 
     req.session.userId = user._id
-    req.session.isAuthenticated = true
+    res.redirect('/customer-account')
     
     publisher({
       subject: 'Login',
@@ -32,7 +32,6 @@ const postLogin = async (req, res, next) => {
     }, 'email')
     customLogger.info(`User ${user.email} logged in`)
     
-    res.redirect('/customer-account')
   } catch (error) {
     customLogger.error(error)
     next(error)
@@ -44,7 +43,6 @@ const logOut = (req, res, next) => {
       next(err)
       return
     }
-    req.session.isAuthenticated = false
     res.redirect('/login')
   })
 }
