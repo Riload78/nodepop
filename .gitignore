@@ -4,7 +4,7 @@
 .vscode/
 .DS_Store
 /public/.DS_Store
-/public/images/thumbnail/.gitkeep
+!/public/images/thumbnail/.gitkeep
 /public/images/imagen-*
 logs/*.log
 /coverage/
