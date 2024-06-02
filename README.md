@@ -70,7 +70,7 @@ AMQP_URL=
 
 ### Install Database
 
-Run the two commands to install the application database and the testing database
+Run the command to install the application database
 
 Database for App
 ```bash
@@ -219,7 +219,7 @@ When server is running, you cant access to the documentation **[http://localhost
 In progress
 - Delegate LOGS to microservices
 
-- Improve API performance
+- Improve API and website performance
 
 
 ## 🔗 Links
