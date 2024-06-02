@@ -64,7 +64,6 @@ describe('Adverts API POST', () => {
       .field('tags', ['test', 'test'])
       .attach('imagen', `${ruta}/demo.jpg`)
       .set('Authorization', token)
-    console.log(res.body)
     expect(res.body.status).toBe('success')
     expect(res.body.message).toBe('The ad has been created successfully')
   })

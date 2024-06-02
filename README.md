@@ -67,7 +67,6 @@ MAIL_SERVICE=
 MAIL_USER=
 MAIL_PASS=
 AMQP_URL=
-REDIS_URI=
 ```
 
 ### Install Database

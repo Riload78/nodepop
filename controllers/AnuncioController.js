@@ -1,4 +1,5 @@
 const { Anuncio, User } = require('../models')
+const customLogger = require('../lib/winstonConfig')
 
 /**
  * GET - ADS LIST
@@ -16,7 +17,7 @@ const getAnuncios = async (skip, limit, tags, venta, precio, nombre, sort) => {
     const anunciosDB = await Anuncio.list(skip, limit, tags, venta, precio, nombre, sort)
     return { status: 'success', count: anunciosDB.length, data: anunciosDB }
   } catch (error) {
-    console.log(`Error getting ads from database: ${error}`)
+    customLogger.error(`Error getting ads from database: ${error}`)
     return error
   }
 }
@@ -31,6 +32,7 @@ const getTags = async () => {
     const tags = await Anuncio.distinct('tags')
     return { status: 'success', count: tags.length, data: tags }
   } catch (error) {
+    customLogger.error(`Error getting tags from database: ${error}`)
     return error
   }
 }
@@ -50,7 +52,7 @@ const createAnuncio = async (data, userId) => {
     await newUser.save()
     return { status: 'success', message: 'The ad has been created successfully' }
   } catch (error) {
-    console.log(`There was an error saving the ad to the database: ${error}`)
+    customLogger.error(`Error saving ad to database: ${error}`)
     return error
   }
 }
@@ -66,6 +68,7 @@ const getAnuncioById = async (id) => {
     const result = await Anuncio.findById(id)
     return { status: 'success', data: result }
   } catch (error) {
+    customLogger.error(`Error getting ad from database: ${error}`)
     return error
   }
 }
@@ -83,7 +86,7 @@ const updateAnuncio = async (id, changes) => {
     await Anuncio.findByIdAndUpdate(id, changes, { new: true })
     return { status: 'success', data: changes }
   } catch (error) {
-    console.log(error)
+    customLogger.error(`Error updating ad from database: ${error}`)
     return error
   }
 }
@@ -99,7 +102,7 @@ const deleteAnuncio = async (id) => {
     await Anuncio.deleteOne(({ _id: id }))
     return { status: 'success', message: `The ad with id "${id}" was removed` }
   } catch (error) {
-    return error
+    customLogger.error(`Error deleting ad from database: ${error}`)
   }
 }
 

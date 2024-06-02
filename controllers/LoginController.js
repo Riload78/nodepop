@@ -64,7 +64,7 @@ const postAPIJWT = async (req, res, next) => {
     })
     res.json({ token: tokenJWT })
   } catch (error) {
-    console.log(error)
+    customLogger.error(error)
     next(error)
   }
 }
