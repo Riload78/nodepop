@@ -221,6 +221,8 @@ In progress
 
 - Improve API and website performance
 
+- Add more tests to improve coverage
+
 
 ## 🔗 Links
 [![portfolio](https://img.shields.io/badge/my_portfolio-000?style=for-the-badge&logo=ko-fi&logoColor=white)](https://riload78.github.io/portfolio/)
