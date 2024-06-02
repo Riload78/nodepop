@@ -56,25 +56,17 @@ Install dependencies
 Duplicate .env.template file and rename as .env . After complete required information 
 
 ```bash
-DB_HOST=
-DB_PORT=
-DB_NAME=
-DB_TEST_NAME=
+DB_HOST=127.0.0.1
+DB_PORT=27017
+DB_NAME=nodepop
+DB_TEST_NAME=nodepoptest
 JWT_SECRET=
-MAIL_FROM=
-MAIL_SERVICE=
+MAIL_FROM=info@nodepop.com
+MAIL_SERVICE=smtp.ethereal.email
 MAIL_USER=
 MAIL_PASS=
-AMQP_URL=
-```
+AMQP_URL=amqp://guest:guest@mq:5672
 
-### Install Database
-
-Run the command to install the application database
-
-Database for App
-```bash
-npm run initDB
 ```
 
 ### Install docker dependencies
@@ -114,6 +106,20 @@ Username: guest - Password: guest
 ![Imagen 1](https://raw.githubusercontent.com/Riload78/nodepop/main/asset-github/exchange.png)
 ![Imagen 2](https://raw.githubusercontent.com/Riload78/nodepop/main/asset-github/queue.png)
 
+
+### Install Database
+
+Run the command to install the application database. Note: Before executing the database creation script, the docker dependencies must be working and publisehr and consumer running for create thumnails from data
+```bash
+npm run publisher
+npm run consumer
+```
+
+Database for App
+```bash
+npm run initDB
+```
+
 ## Start the server
 
 ```bash
@@ -130,9 +136,6 @@ Install Database for Testing
 Run the testst
 ```bash
   npm run test
-```
-```bash
-  npm run test:watch
 ```
 
 ## User Credentials for the Website
