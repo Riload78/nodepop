@@ -6,13 +6,15 @@ const host = process.env.DB_HOST
 const port = process.env.DB_PORT
 const dbName = process.env.DB_NAME
 const dbTestName = process.env.DB_TEST_NAME
+const database_uri = process.env.DATABASE_URI
+const database_uri_test = process.env.DATABASE_URI_TEST
 
 const dbConnect = async () => {
-  let DB_URI = `mongodb://${host}:${port}/${dbName}`
+  let DB_URI = database_uri
 
   try {
     if (process.env.NODE_ENV === 'test') {
-      DB_URI = `mongodb://${host}:${port}/${dbTestName}`
+      DB_URI = database_uri_test
     }
     await mongoose.connect(DB_URI)
   } catch (error) {
