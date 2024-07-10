@@ -17,12 +17,7 @@ const numCPUs = os.cpus().length
  * Get port from environment and store in Express.
  */
 
-if (cluster.isPrimary) {
-  // Fork workers.
-  for (let i = 0; i < numCPUs - 1; i++) {
-    cluster.fork()
-  }
-} else {
+
   const port = normalizePort(process.env.PORT || '3000')
   app.set('port', port)
 
@@ -95,4 +90,4 @@ if (cluster.isPrimary) {
       typeof addr === 'string' ? 'pipe ' + addr : 'port ' + addr.port
     debug('Listening on ' + bind)
   }
-}
+
